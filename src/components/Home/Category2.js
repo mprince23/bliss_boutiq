@@ -157,7 +157,7 @@ const Category2 = () => {
                 <button
                   className="category2-prev"
                   style={{
-                    padding: "16px 18px",
+                    padding: "10px",
                     backgroundColor: "black",
                     border: "none",
                   }}
@@ -173,7 +173,7 @@ const Category2 = () => {
                 <button
                   className="category2-next"
                   style={{
-                    padding: "16px 18px",
+                    padding: "10px",
                     backgroundColor: "black",
                     border: "none",
                   }}

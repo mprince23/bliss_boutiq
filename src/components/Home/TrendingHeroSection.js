@@ -2,6 +2,7 @@ import React from "react";
 import { Box, Button, Container, Grid, Typography } from "@mui/material";
 import trending1 from "../../assets/images/Home/trendingHeroSection/trending1.png";
 import restrending1 from "../../assets/images/Home/resTrending/restrending1.png";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 
 const TrendingHeroSection = ({
   img,
@@ -13,10 +14,10 @@ const TrendingHeroSection = ({
   textColor,
 }) => {
   return (
-    <Box sx={{my: "70px"}}>
+    <Box>
       <Box
         sx={{
-          height: { md: "871px", xs: "550px" },
+          height: "100vh",
           backgroundImage: {
             sm: `url(${img})`,
             xs: `url(${resImg})`,
@@ -29,7 +30,7 @@ const TrendingHeroSection = ({
           width: "100%",
         }}
       >
-        <Container maxWidth="xl">
+        <Container maxWidth="lg">
           <Box sx={{ textAlign: { sm: align, xs: "center" } }}>
             <Box sx={{ color: textColor }} className="lato">
               <Box
@@ -66,30 +67,84 @@ const TrendingHeroSection = ({
                   {heading}
                 </Typography>
               </Box>
-              <button
-                style={{
-                  border: "none",
-                  marginBottom: "30px",
-                  cursor:"pointer"
+              <Button
+                sx={{
+                  backgroundColor: "#000",
+                  color: "#ffffff",
+                  fontSize: { xs: "18px", sm: "24px" },
+                  width: { xs: "250px", sm: "170px" },
+                  cursor: "pointer",
+                  fontWeight: "bold",
+                  margin: "5px",
+                  position: "relative",
+                  transition: "all 0.5s",
+                  "& span": {
+                    display: "inline-block",
+                    transition: "0.5s",
+                    cursor: "pointer",
+                  },
+                  "& .arrow-icon": {
+                    position: "absolute",
+                    opacity: 0,
+                    top: "50%",
+                    right: "-20px",
+                    transform: "translateY(-50%)",
+                    transition: "0.5s",
+                  },
+                  "&:hover": {
+                    "& span": {
+                      paddingRight: "20px",
+                    },
+                    "& .arrow-icon": {
+                      opacity: 1,
+                      right: "10px",
+                    },
+                    backgroundColor: "#000",
+                  },
                 }}
               >
-                <Typography
-                  sx={{
-                    fontSize: { sm: "23px", xs: "18px" },
-                    fontWeight: "700",
-                    padding: { sm: "11px 25px", xs: "8px 18px" },
-                    letterSpacing: "1.5px",
-                  }}
-                >
-                  {btnText}
-                </Typography>
-                {/* <i
-                    className="fa-solid fa-arrow-right-long"
-                    style={{
-                      fontSize: "20px",
-                    }}
-                  ></i> */}
-              </button>
+                <span>for him</span>
+                <ArrowForwardIcon className="arrow-icon" />
+              </Button>
+              <Button
+                sx={{
+                  backgroundColor: "#000",
+                  color: "#ffffff",
+                  fontSize: { xs: "18px", sm: "24px" },
+                  width: { xs: "250px", sm: "170px" },
+                  cursor: "pointer",
+                  fontWeight: "bold",
+                  margin: "5px",
+                  position: "relative",
+                  transition: "all 0.5s",
+                  "& span": {
+                    display: "inline-block",
+                    transition: "0.5s",
+                    cursor: "pointer",
+                  },
+                  "& .arrow-icon": {
+                    position: "absolute",
+                    opacity: 0,
+                    top: "50%",
+                    right: "-20px",
+                    transform: "translateY(-50%)",
+                    transition: "0.5s",
+                  },
+                  "&:hover": {
+                    "& span": {
+                      paddingRight: "20px",
+                    },
+                    "& .arrow-icon": {
+                      opacity: 1,
+                      right: "10px",
+                    },
+                    backgroundColor: "#000",
+                  },
+                }}
+              >
+                <span>for him</span>
+                <ArrowForwardIcon className="arrow-icon" />
+              </Button>
             </Box>
           </Box>
         </Container>

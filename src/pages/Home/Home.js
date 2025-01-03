@@ -14,11 +14,15 @@ import trending2 from "../../assets/images/Home/trendingHeroSection/trending2.pn
 import restrending2 from "../../assets/images/Home/resTrending/restrending2.png";
 import trending3 from "../../assets/images/Home/trendingHeroSection/trending3.png";
 import restrending3 from "../../assets/images/Home/resTrending/restrending3.png";
+import Hero from "../../components/Home/Hero";
+import Subscribe from "../../components/Home/Subscribe";
 
 const Home = () => {
   return (
     <>
+      <Hero />
       <MainSlider />
+      <HandPickedForYou />
       <Category2 />
       {/* <Category /> */}
       <TrendingHeroSection
@@ -27,10 +31,10 @@ const Home = () => {
         title={"FROM DAY TO NIGHT"}
         heading={"THE EPILTOME OF VERSATILITY"}
         btnText={"SHOP CHINOS"}
-        align={"left"}
+        align={"center"}
         textColor={"white"}
       />
-      <ProductImages />
+      {/* <ProductImages /> */}
       <TrendingHeroSection
         img={trending2}
         resImg={restrending2}
@@ -39,10 +43,10 @@ const Home = () => {
         btnText={"SHOP NOW"}
         align={"left"}
         textColor={"white"}
+        
       />
-      <HandPickedForYou />
 
-      <TrendingHeroSection
+      {/* <TrendingHeroSection
         img={trending3}
         resImg={restrending3}
         title={""}
@@ -50,7 +54,8 @@ const Home = () => {
         btnText={"SHOP SUMMER OUTFITS"}
         align={"right"}
         textColor={"black"}
-      />
+      /> */}
+      <Subscribe />
 
     </>
   );

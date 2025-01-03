@@ -15,6 +15,9 @@ import SingleProduct from "./components/Home/SingleProduct";
 import Profile from "./pages/profile/Profile";
 import Product from "./components/product/Product";
 import { RecoilRoot } from "recoil";
+import Hero from "./components/product/Hero";
+import img from "./assets/images/product/hero/1.webp";
+import CategorySection from "./components/product/CategorySection";
 
 function App() {
   function ScrollToTop() {
@@ -27,9 +30,10 @@ function App() {
 
   return (
     <>
-     
-      <RecoilRoot>
-        <Header />
+      <Header />
+      <Hero img={img} />
+      <CategorySection />
+      {/* <RecoilRoot>
         <ScrollToTop />
         <Routes>
           <Route path="/" element={<Home />} />
@@ -47,9 +51,8 @@ function App() {
         </Routes>
 
         <Footer />
-      </RecoilRoot>
+      </RecoilRoot> */}
     </>
   );
 }
-
 export default App;

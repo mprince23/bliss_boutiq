@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Box,
   Button,
@@ -106,6 +106,13 @@ const HandPickedForYou = () => {
       price: "₹ 11.400,00",
     },
   ];
+
+  const [selectedCategory, setSelectedCategory] = useState("men");
+
+  const handleClick = (category) => {
+    setSelectedCategory(category);
+  };
+
   return (
     <>
       <Box sx={{ my: "70px" }}>
@@ -122,7 +129,38 @@ const HandPickedForYou = () => {
             >
               HAND-PICKED FOR YOU
             </Box>
-            <Box>
+
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                gap: "20px",
+                textTransform: "uppercase",
+              }}
+            >
+              {["men", "women", "kids"].map((category) => (
+                <Typography
+                  key={category}
+                  className="lato"
+                  sx={{
+                    fontSize: "14px",
+                    fontWeight:
+                      selectedCategory === category ? "700" : "normal",
+                    borderBottom:
+                      selectedCategory === category
+                        ? "2.5px solid #000"
+                        : "none",
+                    cursor: "pointer",
+                    transition: "0.5s",
+                  }}
+                  onClick={() => handleClick(category)}
+                >
+                  {category}
+                </Typography>
+              ))}
+            </Box>
+
+            <Box mt={"30px"}>
               <Grid container sx={{ position: "relative" }}>
                 <Swiper
                   navigation={{
@@ -162,20 +200,25 @@ const HandPickedForYou = () => {
                           position: "relative",
                           pb: "40px",
                           cursor: "pointer",
+                          textAlign: "center",
+                          ":hover .img": {
+                            transform: "scale(1.1)",
+                            transition: "0.5s",
+                          },
                         }}
                       >
                         <Box
                           sx={{
                             position: "relative",
-                            height: { xs: "auto", sm: "380px" },
+                            height: { xs: "auto", sm: "420px" },
+                            overflow: "hidden",
                           }}
                         >
-                          <img
+                          <Typography
+                            component={"img"}
                             src={item.img}
-                            alt=""
-                            style={{ height: "100% !important" }}
-                          />
-                         
+                            className="img"
+                          ></Typography>
                         </Box>
 
                         <Box
@@ -198,7 +241,7 @@ const HandPickedForYou = () => {
                 <button
                   className="handpicked-prev"
                   style={{
-                    padding: "16px 18px",
+                    padding: "10px",
                     backgroundColor: "black",
                     border: "none",
                   }}
@@ -214,7 +257,7 @@ const HandPickedForYou = () => {
                 <button
                   className="handpicked-next"
                   style={{
-                    padding: "16px 18px",
+                    padding: "10px",
                     backgroundColor: "black",
                     border: "none",
                   }}

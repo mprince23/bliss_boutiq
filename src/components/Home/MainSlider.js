@@ -23,7 +23,7 @@ const MainSlider = () => {
   const swiperRef = useRef(null);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
-  
+
   const handleNext = () => {
     if (swiperRef.current && swiperRef.current.swiper) {
       swiperRef.current.swiper.slideNext();
@@ -48,7 +48,7 @@ const MainSlider = () => {
   const mainSlider = isMobile ? mainSliderMobile : mainSliderDesktop;
   return (
     <>
-      <Box className="mainSlider" sx={{ position: "relative", mt: "70px" }}>
+      <Box className="mainSlider" sx={{ position: "relative" }}>
         <Swiper
           navigation={{
             nextEl: ".swiper-button-next",
@@ -68,7 +68,7 @@ const MainSlider = () => {
             },
           }}
         >
-          {mainSlider.map((item,index) => (
+          {mainSlider.map((item, index) => (
             <SwiperSlide key={index}>
               <Box>
                 <img
