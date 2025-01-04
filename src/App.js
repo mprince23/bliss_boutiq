@@ -15,6 +15,9 @@ import SingleProduct from "./components/Home/SingleProduct";
 import Profile from "./pages/profile/Profile";
 import Product from "./components/product/Product";
 import { RecoilRoot } from "recoil";
+import Activate_form from "./pages/activate_form/Activate_form";
+import DrawerFilter from "./pages/drawer_filter/DrawerFilter";
+import Form from "./pages/form/Form";
 
 function App() {
   function ScrollToTop() {
@@ -29,7 +32,7 @@ function App() {
     <>
      
       <RecoilRoot>
-        <Header />
+        {/* <Header />
         <ScrollToTop />
         <Routes>
           <Route path="/" element={<Home />} />
@@ -46,8 +49,11 @@ function App() {
           <Route path="/contact" element={<Contact />} />
         </Routes>
 
-        <Footer />
+        <Footer /> */}
+      {/* <DrawerFilter /> */}
+          <Form />
       </RecoilRoot>
+
     </>
   );
 }
