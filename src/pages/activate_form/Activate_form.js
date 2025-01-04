@@ -1,18 +1,25 @@
-import { Box, Button, Container, Grid, TextField, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  Container,
+  Grid,
+  TextField,
+  Typography,
+} from "@mui/material";
 import React from "react";
 
 const ActivateForm = () => {
   return (
-    <div>
+    <Box>
       <Box>
-      {/* <Container maxWidth="xl"> */}
+        {/* <Container maxWidth="xl"> */}
         <Grid container justifyContent="center">
           <Grid
             item
             md={12}
             sx={{
-            width: "100%",
-            padding:"54px"
+              width: "100%",
+              px: { sm: "55px", xs: "20px" },
             }}
           >
             <Box>
@@ -21,8 +28,9 @@ const ActivateForm = () => {
                 sx={{
                   fontSize: { xs: "20px", sm: "24px", md: "32px" },
                   fontWeight: "800",
-                  marginBottom: 2,py:1,
-                  mt:3
+                  marginBottom: 2,
+                  py: 1,
+                  mt: 3,
                 }}
               >
                 Activate HUGO BOSS EXPERIENCE
@@ -67,7 +75,7 @@ const ActivateForm = () => {
                     sx={{
                       textTransform: "unset",
                       border: "1px solid black",
-                      padding: "12px 88px",
+                      padding: { sm: "12px 88px", xs: "12px 50px" },
                       fontSize: "16px",
                       fontWeight: "500",
                       borderRadius: "0px",
@@ -87,7 +95,7 @@ const ActivateForm = () => {
         </Grid>
         {/* </Container> */}
       </Box>
-    </div>
+    </Box>
   );
 };
 

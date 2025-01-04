@@ -13,7 +13,7 @@ const Form = () => {
   };
 
   return (
-    <div>
+    <Box sx={{ mt: "150px" }}>
       <Container maxWidth="md">
         {/* Tabs */}
         <Tabs
@@ -21,7 +21,7 @@ const Form = () => {
           onChange={handleTabChange}
           sx={{
             "& .MuiTab-root": {
-              fontWeight: "bold",
+              fontWeight: "700",
               textTransform: "none",
               "&:hover": {
                 textDecorationColor: "black",
@@ -29,15 +29,16 @@ const Form = () => {
               },
             },
             "& .Mui-selected": {
-              textDecoration: "underline",
               textDecorationColor: "black",
               color: "#000",
+              borderBottom: "4px solid #000",
             },
+            padding: {sm:"0 50px"},
           }}
         >
-          <Tab label="LOG IN" />
-          <Tab label="REGISTER" />
-          <Tab label="ACTIVATE" />
+          <Tab label="LOG IN" sx={{ fontSize: "12px" }} />
+          <Tab label="REGISTER" sx={{ fontSize: "12px" }} />
+          <Tab label="ACTIVATE" sx={{ fontSize: "12px" }} />
         </Tabs>
         <Box
           sx={{
@@ -61,7 +62,7 @@ const Form = () => {
           )}
         </Box>
       </Container>
-    </div>
+    </Box>
   );
 };
 

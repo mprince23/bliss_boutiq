@@ -18,16 +18,16 @@ const Login_form2 = () => {
   const handleClickShowPassword = () => setShowPassword(!showPassword);
 
   return (
-    <div>
+    <Box>
       <Box>
         {/* <Container maxWidth="xl"> */}
         <Grid container justifyContent="center">
           <Grid
             item
-            md={12}
+            xs={12}
             sx={{
               width: "100%",
-              padding: "54px",
+              padding: { xs: "20px", sm: "40px", md: "54px" },
             }}
           >
             <Box>
@@ -88,6 +88,7 @@ const Login_form2 = () => {
                     display: "flex",
                     justifyContent: "space-between",
                     alignItems: "center",
+                    flexDirection: { xs: "column", sm: "row" },
                   }}
                 >
                   <Typography sx={{ display: "flex", alignItems: "center" }}>
@@ -107,7 +108,11 @@ const Login_form2 = () => {
                     sx={{
                       textTransform: "unset",
                       border: "1px solid black",
-                      padding: "12px 88px",
+                      padding: {
+                        xs: "12px 30px",
+                        sm: "12px 60px",
+                        md: "12px 88px",
+                      },
                       fontSize: "16px",
                       fontWeight: "500",
                       borderRadius: "0px",
@@ -127,7 +132,7 @@ const Login_form2 = () => {
         </Grid>
         {/* </Container> */}
       </Box>
-    </div>
+    </Box>
   );
 };
 
