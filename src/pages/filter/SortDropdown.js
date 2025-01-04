@@ -39,8 +39,13 @@ const SortDropdown = () => {
           color: 'black',
           border: '1px solid #000',
           fontWeight: 'bold',
-          borderRadius:'8px',
-          p:'6px 5px 6px 8px'
+          borderRadius: '8px',
+          p: '6px 5px 6px 8px',
+          "&:hover": {
+            bgcolor: "#FFF",
+            boxShadow: "none",
+            borderColor: '#000',
+          },
         }}
       >
         {selectedOption}
@@ -51,11 +56,11 @@ const SortDropdown = () => {
         onClose={handleClose}
         PaperProps={{
           style: {
-            marginTop: '10px',
+            marginTop: '4px',
             minWidth: '190px',
-            border:'1px solid #000',
-            borderRadius:'0px',
-            boxShadow:'none',
+            border: '1px solid #000',
+            borderRadius: '0px',
+            boxShadow: 'none',
           },
         }}
       >
@@ -63,11 +68,13 @@ const SortDropdown = () => {
           <MenuItem
             key={index}
             onClick={() => handleMenuItemClick(option)}
-            sx={{py:1,
+            sx={{
+              py: 1,
               fontSize: '16px',
               fontWeight: 'bold',
-              color: 'black',
-              '&:hover': { backgroundColor: '#000',color:'#fff' },
+              color: selectedOption === option ? '#fff' : 'black',
+              bgcolor: selectedOption === option ? '#000' : 'transparent',
+              '&:hover': { backgroundColor: '#000', color: '#fff' },
             }}
           >
             {option}
@@ -78,4 +85,4 @@ const SortDropdown = () => {
   );
 };
 
-export default SortDropdown
+export default SortDropdown;
