@@ -13,8 +13,11 @@ import Contact from "./pages/contact/Contact";
 import CartPage from "./components/cart/CartPage";
 import SingleProduct from "./components/Home/SingleProduct";
 import Profile from "./pages/profile/Profile";
-import Product from "./components/product/Product";
 import { RecoilRoot } from "recoil";
+import Hero from "./components/product/Hero";
+import CategorySection from "./components/product/CategorySection";
+import ProductPage from "./pages/Product/Product";
+import Form from './pages/form/Form'
 
 function App() {
   function ScrollToTop() {
@@ -27,8 +30,8 @@ function App() {
 
   return (
     <>
-     
-      <RecoilRoot>
+      
+      {/* <RecoilRoot>
         <Header />
         <ScrollToTop />
         <Routes>
@@ -42,14 +45,15 @@ function App() {
           <Route path="/cart" element={<CartPage />} />
           <Route path="/signUp" element={<Register_form />} />
           <Route path="/singleProduct" element={<SingleProduct />} />
-          <Route path="/product" element={<Product />} />
+          <Route path="/product" element={<ProductPage />} />
           <Route path="/contact" element={<Contact />} />
         </Routes>
 
         <Footer />
-      </RecoilRoot>
+      </RecoilRoot> */}
+          <Form />
+
     </>
   );
 }
-
 export default App;
