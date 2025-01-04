@@ -533,7 +533,7 @@ const Product = () => {
 
       <Box sx={{ mt: '100px', mb: { xs: '20px', sm: '25px', md: '30px' }, display: 'flex', justifyContent: 'center', alignItems: 'center', }}>
         <Typography variant="h1" className="lato" sx={{ fontSize: { xs: '24px', sm: '30px', md: '38px' }, fontWeight: '900', lineHeight: 1, textTransform: 'uppercase', textAlign: 'center', }}  >
-          💀 Sale: All Menswear 💀
+          Sale: All Menswear
         </Typography>
       </Box>
 

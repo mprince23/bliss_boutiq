@@ -135,17 +135,7 @@ const ProductListing = () => {
           )?.code;
 
           return (
-            <Grid
-              item
-              xs={6}
-              sm={6}
-              md={4}
-              lg={4}
-              xl={3}
-              key={product.id}
-              onMouseEnter={() => handleMouseEnter(product.id)}
-              onMouseLeave={handleMouseLeave}
-            >
+            <Grid item xs={6} sm={6} md={4} lg={4} xl={3} key={product.id} onMouseEnter={() => handleMouseEnter(product.id)} onMouseLeave={handleMouseLeave} >
               <Card
                 sx={{
                   position: "relative",
