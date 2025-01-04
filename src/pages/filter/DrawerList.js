@@ -3,7 +3,7 @@ import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
 import TuneIcon from "@mui/icons-material/Tune";
 import Collapse from "@mui/material/Collapse";
-import { Checkbox, Grid, Typography, Box, Drawer, Button, List, ListItemButton,  } from "@mui/material";
+import { Checkbox, Grid, Typography, Box, Drawer, Button, List, ListItemButton, } from "@mui/material";
 import SportsGolfIcon from "@mui/icons-material/SportsGolf";
 import ErrorOutlineRoundedIcon from "@mui/icons-material/ErrorOutlineRounded";
 import CloseIcon from '@mui/icons-material/Close';
@@ -91,70 +91,70 @@ const colorOptions = [
 ];
 
 const fits = [
-  { label: 'Slim Fit (324)'},
-  { label: 'Regular Fit (694)'},
-  { label: 'Relaxed Fit (115)'},
-  { label: 'Extra Slim Fit (1)'},
-  { label: 'Tapered Fit (1)'}
+  { label: 'Slim Fit (324)' },
+  { label: 'Regular Fit (694)' },
+  { label: 'Relaxed Fit (115)' },
+  { label: 'Extra Slim Fit (1)' },
+  { label: 'Tapered Fit (1)' }
 ];
 
 const features = [
-  { label: 'Water repellent (51)'},
-  { label: 'Multipack (30)'},
-  { label: 'Larger Size available (14)'},
-  { label: 'Made in Italy (7)'},
-  { label: 'All-gender (1)'}
+  { label: 'Water repellent (51)' },
+  { label: 'Multipack (30)' },
+  { label: 'Larger Size available (14)' },
+  { label: 'Made in Italy (7)' },
+  { label: 'All-gender (1)' }
 ];
 
 const materials = [
-  { label: 'Cotton (726)'},
-  { label: 'Silk (17)'},
-  { label: 'Linen (12)'},
-  { label: 'Leather (114)'},
-  { label: 'Wool (197)'},
-  { label: 'Synthetic (401)'},
-  { label: 'Cellulose (37)'},
-  { label: 'Faux-leather (8)'},
+  { label: 'Cotton (726)' },
+  { label: 'Silk (17)' },
+  { label: 'Linen (12)' },
+  { label: 'Leather (114)' },
+  { label: 'Wool (197)' },
+  { label: 'Synthetic (401)' },
+  { label: 'Cellulose (37)' },
+  { label: 'Faux-leather (8)' },
 ];
 
 const patterns = [
-  { label: 'Plain (665)'},
-  { label: 'Patterned (119)'},
-  { label: 'Striped (50)'},
-  { label: 'Melange (44)'},
-  { label: 'Check (27)'},
-  { label: 'Embroidery (14)'},
-  { label: 'Mouline (8)'},
+  { label: 'Plain (665)' },
+  { label: 'Patterned (119)' },
+  { label: 'Striped (50)' },
+  { label: 'Melange (44)' },
+  { label: 'Check (27)' },
+  { label: 'Embroidery (14)' },
+  { label: 'Mouline (8)' },
 ];
 
 const collars = [
-  { label: 'Kent collar (95)'},
-  { label: 'Stand collar (50)'},
-  { label: 'Hooded collar (25)'},
-  { label: 'Spread collar (21)'},
-  { label: 'Button-down collar (19)'},
-  { label: 'Shirt collar (14)'},
-  { label: 'Point collar (6)'},
-  { label: 'Collarless (1)'},
+  { label: 'Kent collar (95)' },
+  { label: 'Stand collar (50)' },
+  { label: 'Hooded collar (25)' },
+  { label: 'Spread collar (21)' },
+  { label: 'Button-down collar (19)' },
+  { label: 'Shirt collar (14)' },
+  { label: 'Point collar (6)' },
+  { label: 'Collarless (1)' },
 ];
 
 const sleeves = [
-  { label: 'Long sleeves (322)'},
-  { label: 'Short sleeves (264)'},
-  { label: 'Sleeveless (1)'},
+  { label: 'Long sleeves (322)' },
+  { label: 'Short sleeves (264)' },
+  { label: 'Sleeveless (1)' },
 ];
 
 const necklines = [
-  { label: 'Crew neck (218)'},
-  { label: 'Polo collar (147)'},
-  { label: 'Zip neck (77)'},
-  { label: 'Hooded (62)'},
-  { label: 'Turtleneck (11)'},
-  { label: 'V-neck (9)'},
-  { label: 'Collage collar (5)'},
-  { label: 'Ribbed collar (4)'},
-  { label: 'Mock neck (3)'},
-  { label: 'Shawl collar (2)'},
+  { label: 'Crew neck (218)' },
+  { label: 'Polo collar (147)' },
+  { label: 'Zip neck (77)' },
+  { label: 'Hooded (62)' },
+  { label: 'Turtleneck (11)' },
+  { label: 'V-neck (9)' },
+  { label: 'Collage collar (5)' },
+  { label: 'Ribbed collar (4)' },
+  { label: 'Mock neck (3)' },
+  { label: 'Shawl collar (2)' },
 ];
 
 const DrawerList = () => {
@@ -224,27 +224,34 @@ const DrawerList = () => {
       <Button
         onClick={handleDrawerOpen}
         sx={{
-          bgcolor: "#000",
-          borderRadius: "8px",
+          textTransform: 'none',
+          bgcolor: 'black',
+          fontWeight: 'bold',
+          borderRadius: '8px',
+          p: '6px 5px 6px 8px',
           "&:hover": {
             bgcolor: "#000",
             boxShadow: "none",
           },
         }}
       >
-        <Typography sx={{ color: "#fff", mx: 2 }}>Filter</Typography>
-        <TuneIcon sx={{ color: "#FFF", mx: 2 }} />
+        <Typography sx={{ color: "#fff", mx: 1 }}>Filter</Typography>
+        <TuneIcon sx={{ color: "#FFF", mx: 1 }} />
       </Button>
       <Drawer open={openDrawer}>
-      <Typography sx={{textAlign:"center",fontWeight:"900",pt:"5px"}}>SELECT FILTER</Typography>
-      <Box sx={{display:"flex",justifyContent:"end",padding:"20px 30px 0px 30px",cursor:"pointer"}} onClick={handleDrawerClose}><CloseIcon /></Box>
+        <Box sx={{ display: "flex", justifyContent: 'space-between', padding: "20px 30px 0px 30px" }} >
+          <Typography sx={{ textAlign: "center", fontWeight: "900" }}>SELECT FILTER</Typography>
+          <Box sx={{ display: "flex", justifyContent: "end" }}>
+            <CloseIcon onClick={handleDrawerClose} sx={{ cursor: "pointer" }} />
+          </Box>
+        </Box>
         <Box
-          sx={{ width: 450, display: "flex", justifyContent: "center" }}
+          sx={{ width: { lg: 450, xs: 320 }, display: "flex", justifyContent: "center", position: 'relative' }}
           role="presentation"
           onClick={handleDrawerOpen}
         >
           <List
-            sx={{ width: "100%", maxWidth: 430, bgcolor: "background.paper" }}
+            sx={{ width: "100%", maxWidth: 430, bgcolor: "background.paper", overflow: 'auto' }}
             component="nav"
             aria-labelledby="nested-list-subheader"
           >
@@ -254,7 +261,7 @@ const DrawerList = () => {
                 onClick={handleClick}
                 sx={{ display: "flex", justifyContent: "space-between" }}
               >
-                <Typography sx={{ fontWeight: "900" }}>CATEGORY</Typography>
+                <Typography variant="subtitle2" sx={{ fontWeight: "800" }}>CATEGORY</Typography>
                 {open ? <ExpandLess /> : <ExpandMore />}
               </ListItemButton>
               <Collapse in={open} timeout="auto" unmountOnExit>
@@ -262,9 +269,9 @@ const DrawerList = () => {
                   {category.map((item) => (
                     <Grid item xs={6}>
                       <Typography
-                        sx={{ display: "flex", gap: 1, alignItems: "center",fontSize:"15px" }}
+                        sx={{ display: "flex", gap: 1, alignItems: "center", fontSize: "15px" }}
                       >
-                        <Checkbox /> {item.label}
+                        <Checkbox size="small" /> {item.label}
                       </Typography>
                     </Grid>
                   ))}
@@ -278,7 +285,7 @@ const DrawerList = () => {
                 onClick={handleClickSize}
                 sx={{ display: "flex", justifyContent: "space-between" }}
               >
-                <Typography sx={{ fontWeight: "900" }}>SIZE</Typography>
+                <Typography variant="subtitle2" sx={{ fontWeight: "800" }}>SIZE</Typography>
                 {sizeList ? <ExpandLess /> : <ExpandMore />}
               </ListItemButton>
               <Collapse in={sizeList} timeout="auto" unmountOnExit>
@@ -308,7 +315,7 @@ const DrawerList = () => {
                                 bgcolor: "#000",
                                 color: "#fff",
                               },
-                              fontSize:"15px"
+                              fontSize: "16px"
                             }}
                           >
                             {item}
@@ -337,8 +344,9 @@ const DrawerList = () => {
                   alignItems: "center",
                   gap: 1,
                   py: 1,
-                  fontWeight: "900",
+                  fontWeight: "800",
                 }}
+                variant="subtitle2"
               >
                 {" "}
                 <SportsGolfIcon
@@ -360,7 +368,7 @@ const DrawerList = () => {
                 onClick={handleClickColor}
                 sx={{ display: "flex", justifyContent: "space-between" }}
               >
-                <Typography sx={{ fontWeight: "900" }}>COLOR</Typography>
+                <Typography variant="subtitle2" sx={{ fontWeight: "800" }}>COLOR</Typography>
                 {colorList ? <ExpandLess /> : <ExpandMore />}
               </ListItemButton>
               <Collapse in={colorList} timeout="auto" unmountOnExit>
@@ -385,8 +393,8 @@ const DrawerList = () => {
                         <Box
                           sx={{
                             border: "1px solid black",
-                            height: "25px",
-                            width: "25px",
+                            height: "18px",
+                            width: "18px",
                             display: "flex",
                             alignItems: "center",
                             justifyContent: "center",
@@ -394,14 +402,14 @@ const DrawerList = () => {
                         >
                           <Typography
                             sx={{
-                              height: "19px",
-                              width: "19px",
+                              height: "14px",
+                              width: "14px",
                               backgroundColor: item.color,
                               textAlign: "center",
                             }}
                           ></Typography>
                         </Box>
-                        <Typography sx={{ color: "balck",fontSize:"15px" }}>
+                        <Typography sx={{ color: "balck", fontSize: "15px" }}>
                           {item.name}
                         </Typography>
                       </Box>
@@ -417,7 +425,7 @@ const DrawerList = () => {
                 onClick={handleFit}
                 sx={{ display: "flex", justifyContent: "space-between" }}
               >
-                <Typography sx={{ fontWeight: "900" }}>FIT</Typography>
+                <Typography variant="subtitle2" sx={{ fontWeight: "800" }}>FIT</Typography>
                 {fitList ? <ExpandLess /> : <ExpandMore />}
               </ListItemButton>
               <Collapse in={fitList} timeout="auto" unmountOnExit>
@@ -425,11 +433,11 @@ const DrawerList = () => {
                   {fits.map((item) => (
                     <Grid item xs={6}>
                       <Box>
-                         <Typography
-                           sx={{ display: "flex", alignItems: "center",fontSize:"15px" }}
-                         >
-                           <Checkbox /> {item.label}
-                         </Typography>
+                        <Typography
+                          sx={{ display: "flex", alignItems: "center", fontSize: "15px" }}
+                        >
+                          <Checkbox size="small" /> {item.label}
+                        </Typography>
                       </Box>
                     </Grid>
                   ))}
@@ -443,7 +451,7 @@ const DrawerList = () => {
                 onClick={handleFeatures}
                 sx={{ display: "flex", justifyContent: "space-between" }}
               >
-                <Typography sx={{ fontWeight: "900" }}>FEATURES</Typography>
+                <Typography variant="subtitle2" sx={{ fontWeight: "800" }}>FEATURES</Typography>
                 {featuresList ? <ExpandLess /> : <ExpandMore />}
               </ListItemButton>
               <Collapse in={featuresList} timeout="auto" unmountOnExit>
@@ -451,11 +459,11 @@ const DrawerList = () => {
                   {features.map((item) => (
                     <Grid item xs={6}>
                       <Box>
-                         <Typography
-                           sx={{ display: "flex", alignItems: "center",fontSize:"15px" }}
-                         >
-                           <Checkbox /> {item.label}
-                         </Typography>
+                        <Typography
+                          sx={{ display: "flex", alignItems: "center", fontSize: "15px" }}
+                        >
+                          <Checkbox size="small" /> {item.label}
+                        </Typography>
                       </Box>
                     </Grid>
                   ))}
@@ -469,7 +477,7 @@ const DrawerList = () => {
                 onClick={handleMaterial}
                 sx={{ display: "flex", justifyContent: "space-between" }}
               >
-                <Typography sx={{ fontWeight: "900" }}>MATERIAL</Typography>
+                <Typography variant="subtitle2" sx={{ fontWeight: "800" }}>MATERIAL</Typography>
                 {materialsList ? <ExpandLess /> : <ExpandMore />}
               </ListItemButton>
               <Collapse in={materialsList} timeout="auto" unmountOnExit>
@@ -477,11 +485,11 @@ const DrawerList = () => {
                   {materials.map((item) => (
                     <Grid item xs={6}>
                       <Box>
-                         <Typography
-                           sx={{ display: "flex", alignItems: "center",fontSize:"15px" }}
-                         >
-                           <Checkbox /> {item.label}
-                         </Typography>
+                        <Typography
+                          sx={{ display: "flex", alignItems: "center", fontSize: "15px" }}
+                        >
+                          <Checkbox size="small" /> {item.label}
+                        </Typography>
                       </Box>
                     </Grid>
                   ))}
@@ -495,7 +503,7 @@ const DrawerList = () => {
                 onClick={handlePattern}
                 sx={{ display: "flex", justifyContent: "space-between" }}
               >
-                <Typography sx={{ fontWeight: "900" }}>PATTERN</Typography>
+                <Typography variant="subtitle2" sx={{ fontWeight: "800" }}>PATTERN</Typography>
                 {patternList ? <ExpandLess /> : <ExpandMore />}
               </ListItemButton>
               <Collapse in={patternList} timeout="auto" unmountOnExit>
@@ -503,11 +511,11 @@ const DrawerList = () => {
                   {patterns.map((item) => (
                     <Grid item xs={6}>
                       <Box>
-                         <Typography
-                           sx={{ display: "flex", alignItems: "center",fontSize:"15px" }}
-                         >
-                           <Checkbox /> {item.label}
-                         </Typography>
+                        <Typography
+                          sx={{ display: "flex", alignItems: "center", fontSize: "15px" }}
+                        >
+                          <Checkbox size="small" /> {item.label}
+                        </Typography>
                       </Box>
                     </Grid>
                   ))}
@@ -521,7 +529,7 @@ const DrawerList = () => {
                 onClick={handleCollar}
                 sx={{ display: "flex", justifyContent: "space-between" }}
               >
-                <Typography sx={{ fontWeight: "900" }}>COLLAR</Typography>
+                <Typography variant="subtitle2" sx={{ fontWeight: "800" }}>COLLAR</Typography>
                 {collarList ? <ExpandLess /> : <ExpandMore />}
               </ListItemButton>
               <Collapse in={collarList} timeout="auto" unmountOnExit>
@@ -529,11 +537,11 @@ const DrawerList = () => {
                   {collars.map((item) => (
                     <Grid item xs={6}>
                       <Box>
-                         <Typography
-                           sx={{ display: "flex", alignItems: "center",fontSize:"15px" }}
-                         >
-                           <Checkbox /> {item.label}
-                         </Typography>
+                        <Typography
+                          sx={{ display: "flex", alignItems: "center", fontSize: "15px" }}
+                        >
+                          <Checkbox size="small" /> {item.label}
+                        </Typography>
                       </Box>
                     </Grid>
                   ))}
@@ -547,19 +555,19 @@ const DrawerList = () => {
                 onClick={handleSleeves}
                 sx={{ display: "flex", justifyContent: "space-between" }}
               >
-                <Typography sx={{ fontWeight: "900" }}>SLEEVES</Typography>
+                <Typography variant="subtitle2" sx={{ fontWeight: "800" }}>SLEEVES</Typography>
                 {sleevesList ? <ExpandLess /> : <ExpandMore />}
               </ListItemButton>
               <Collapse in={sleevesList} timeout="auto" unmountOnExit>
-                  {sleeves.map((item) => (
-                      <Box>
-                         <Typography
-                           sx={{ display: "flex", alignItems: "center",fontSize:"15px" }}
-                         >
-                           <Checkbox /> {item.label}
-                         </Typography>
-                      </Box>
-                  ))}
+                {sleeves.map((item) => (
+                  <Box>
+                    <Typography
+                      sx={{ display: "flex", alignItems: "center", fontSize: "15px" }}
+                    >
+                      <Checkbox size="small" /> {item.label}
+                    </Typography>
+                  </Box>
+                ))}
               </Collapse>
             </Box>
 
@@ -569,7 +577,7 @@ const DrawerList = () => {
                 onClick={handlenecklines}
                 sx={{ display: "flex", justifyContent: "space-between" }}
               >
-                <Typography sx={{ fontWeight: "900" }}>NECKLINES</Typography>
+                <Typography variant="subtitle2" sx={{ fontWeight: "800" }}>NECKLINES</Typography>
                 {necklineList ? <ExpandLess /> : <ExpandMore />}
               </ListItemButton>
               <Collapse in={necklineList} timeout="auto" unmountOnExit>
@@ -577,20 +585,38 @@ const DrawerList = () => {
                   {necklines.map((item) => (
                     <Grid item xs={6}>
                       <Box>
-                         <Typography
-                           sx={{ display: "flex", alignItems: "center",fontSize:"15px" }}
-                         >
-                           <Checkbox /> {item.label}
-                         </Typography>
+                        <Typography
+                          sx={{ display: "flex", alignItems: "center", fontSize: "15px" }}
+                        >
+                          <Checkbox size="small" /> {item.label}
+                        </Typography>
                       </Box>
                     </Grid>
                   ))}
                 </Grid>
               </Collapse>
             </Box>
-
           </List>
+          <Button
+            sx={{
+              bgcolor: 'black',
+              color: 'white',
+              fontSize: '18px',
+              display: 'block',
+              fontWeight: '700',
+              padding: "20px 0px",
+              width: { lg: 450, xs: 320 },
+              cursor: 'pointer',
+              position: 'fixed',
+              bottom: '0px',
+              left: '0px',
+              borderRadius: '0px',
+              '&:hover': { bgcolor: 'black' }
+            }}>
+            show 1691 results
+          </Button>
         </Box>
+
       </Drawer>
     </div>
   );
