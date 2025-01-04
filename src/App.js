@@ -14,8 +14,6 @@ import CartPage from "./components/cart/CartPage";
 import SingleProduct from "./components/Home/SingleProduct";
 import Profile from "./pages/profile/Profile";
 import { RecoilRoot } from "recoil";
-import Hero from "./components/product/Hero";
-import CategorySection from "./components/product/CategorySection";
 import ProductPage from "./pages/Product/Product";
 import Form from "./pages/form/Form";
 
