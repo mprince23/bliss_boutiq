@@ -17,6 +17,7 @@ import { RecoilRoot } from "recoil";
 import Hero from "./components/product/Hero";
 import CategorySection from "./components/product/CategorySection";
 import ProductPage from "./pages/Product/Product";
+import Form from './pages/form/Form'
 
 function App() {
   function ScrollToTop() {
@@ -30,7 +31,7 @@ function App() {
   return (
     <>
       
-      <RecoilRoot>
+      {/* <RecoilRoot>
         <Header />
         <ScrollToTop />
         <Routes>
@@ -49,7 +50,9 @@ function App() {
         </Routes>
 
         <Footer />
-      </RecoilRoot>
+      </RecoilRoot> */}
+          <Form />
+
     </>
   );
 }

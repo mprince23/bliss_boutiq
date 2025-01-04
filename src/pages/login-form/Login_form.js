@@ -95,15 +95,15 @@ const Login_form = ({ edit }) => {
     },
   });
   return (
-    <Box mt={5} pt={5}>
-      <ToastContainer />
+    <Box>
+      {/* <ToastContainer /> */}
       <Grid container display={"flex"} justifyContent={"center"}>
         <Grid
           item
-          md={9}
+          md={12}
           sx={{
             width: "100%",
-            margin: "0px 20px",
+            padding:"24px 54px"
           }}
         >
           <Box textAlign={"center"}>

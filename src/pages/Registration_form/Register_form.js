@@ -106,10 +106,10 @@ const Register_form = ({ edit }) => {
 
   return (
     <>
-      <ToastContainer />
-      <Box mt={5} pt={5}>
-        <Container maxWidth={`${!edit && "md"}`}>
-          <Box p={2}>
+      {/* <ToastContainer /> */}
+      <Box>
+        {/* <Container maxWidth={`${!edit && "md"}`}> */}
+          <Box py={2} px={"55px"}>
             <Box>
               <Typography
                 variant="h4"
@@ -507,7 +507,7 @@ const Register_form = ({ edit }) => {
               </form>
             </Box>
           </Box>
-        </Container>
+        {/* </Container> */}
       </Box>
     </>
   );
