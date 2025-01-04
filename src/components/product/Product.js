@@ -491,6 +491,7 @@ import TuneIcon from "@mui/icons-material/Tune";
 import CloseIcon from "@mui/icons-material/Close";
 import ProductListing from "../Home/ProductListing";
 import DrawerList from "../../pages/filter/DrawerList";
+import SortDropdown from "../../pages/filter/SortDropdown";
 
 const Product = () => {
   const [open, setOpen] = useState(false);
@@ -532,7 +533,7 @@ const Product = () => {
 
       <Box sx={{ mt: '100px', mb: '30px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
         <Typography variant="h1" className="lato" sx={{ fontSize: '38px', fontWeight: '900', lineHeight: 1, textTransform: 'uppercase' }}>
-          Sale: All Menswear
+          💀 Sale: All Menswear 💀
         </Typography>
       </Box>
 
@@ -547,16 +548,15 @@ const Product = () => {
         <Box
           sx={{
             display: "flex",
-            justifyContent: "space-between",
+            justifyContent: "start",
             alignItems: "center",
             mb: 3,
           }}
         >
-          {/* <Typography variant="h6">Products</Typography> */}
-          <DrawerList />
-          <IconButton onClick={handleDrawerToggle} sx={{ display: { xs: "block", md: "none" } }}>
-            <TuneIcon />
-          </IconButton>
+          <Box sx={{ bgcolor: '#FFF',borderRadius:'8px',boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)', p: 0.5, display: 'flex' ,gap:1}}>
+            <DrawerList />
+            <SortDropdown />
+          </Box>
         </Box>
 
         {/* Product Listing */}
