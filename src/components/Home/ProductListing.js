@@ -1,384 +1,419 @@
-// import React, { useRef, useState } from "react";
-// import productImg1 from "../../assets/images/Home/Listing/productImg1.png";
-// import productImg2 from "../../assets/images/Home/Listing/productImg2.png";
-// import productImg3 from "../../assets/images/Home/Listing/productImg3.png";
-// import productImg4 from "../../assets/images/Home/Listing/productImg4.png";
-// import {
-//   Box,
-//   Container,
-//   Grid,
-//   Radio,
-//   RadioGroup,
-//   Typography,
-//   useTheme,
-// } from "@mui/material";
-// import { Swiper, SwiperSlide } from "swiper/react";
-// import { EffectFade, Navigation, Pagination } from "swiper/modules";
-// import "../../../node_modules/swiper/swiper-bundle.min.css";
-// import StarIcon from "@mui/icons-material/Star";
-// import { useNavigate } from "react-router-dom";
-
-// const ProductListing = () => {
-//   // const swiperRefs = [useRef(null)];
-//   const theme = useTheme();
-//   const navigate = useNavigate();
-//   const [selectedColor, setSelectedColor] = useState("");
-
-//   const handleColorChange = (event) => {
-//     setSelectedColor(event.target.value);
-//   };
-
-//   // const handleNext = (index) => {
-//   //   if (swiperRefs[index].current && swiperRefs[index].current.swiper) {
-//   //     swiperRefs[index].current.swiper.slideNext();
-//   //   }
-//   // };
-
-//   // const handlePrev = (index) => {
-//   //   if (swiperRefs[index].current && swiperRefs[index].current.swiper) {
-//   //     swiperRefs[index].current.swiper.slidePrev();
-//   //   }
-//   // };
-
-//   const singleProductImg = [productImg1, productImg2, productImg3, productImg4];
-//   const colors = [
-//     { value: "#D3B7A2", label: "Red" },
-//     { value: "#000", label: "Green" },
-//     { value: "#EBE6EC", label: "Blue" },
-//     { value: "#BF7F7F", label: "Yellow" },
-//   ];
-
-//   return (
-//     <>
-//       <Box>
-//         <Container maxWidth="xl">
-//           <Box className="Listing" onClick={() => navigate("/singleProduct")}>
-//             <Grid container spacing={3}>
-//               {[0, 1, 2,3,4,5,6].map((index) => (
-//                 <Grid item xs={12} sm={6} md={4} key={index}>
-//                   <Box className="product-container">
-//                     <Box sx={{ position: "relative" }}>
-//                       <Swiper
-//                         // ref={swiperRefs[index]}
-//                         fadeEffect={{ crossFade: true }}
-//                         effect={"fade"}
-//                         navigation={{
-//                           nextEl: `.swiper-button-next-${index}`,
-//                           prevEl: `.swiper-button-prev-${index}`,
-//                         }}
-//                         modules={[EffectFade, Navigation, Pagination]}
-//                         // className="mySwiper"
-//                         loop={false}
-//                         pagination={{
-//                           clickable: true,
-//                           renderBullet: (bulletIndex, className) => {
-//                             return `<span class="${className} custom-dot"><span class="dash"></span></span>`;
-//                           },
-//                         }}
-//                       >
-//                         {singleProductImg.map((item, imgIndex) => (
-//                           <SwiperSlide key={imgIndex}>
-//                             <Box>
-//                               <Box sx={{ objectFit: "contain" }}>
-//                                 <img
-//                                   src={item}
-//                                   alt="Product"
-//                                   style={{
-//                                     width: "100%",
-//                                     height: "auto",
-//                                     borderRadius: "0",
-//                                   }}
-//                                 />
-//                               </Box>
-//                             </Box>
-//                           </SwiperSlide>
-//                         ))}
-//                       </Swiper>
-//                       <button className="best-seller-button">
-//                         Best Seller
-//                       </button>
-//                       <button
-//                         className={`ListingSlider-prev navigation-button swiper-button-prev-${index}`}
-//                         // onClick={() => handlePrev(index)}
-//                       >
-//                         <i className="fa-solid fa-chevron-left"></i>
-//                       </button>
-//                       <button
-//                         className={`ListingSlider-next navigation-button swiper-button-next-${index}`}
-//                         // onClick={() => handleNext(index)}
-//                       >
-//                         <i className="fa-solid fa-chevron-right"></i>
-//                       </button>
-//                     </Box>
-//                   </Box>
-//                   <Box
-//                     sx={{
-//                       fontSize: "13px",
-//                       my: "10px",
-//                       cursor: "pointer",
-//                       display: "inline-block",
-//                       color: theme.palette.textGray,
-//                       "&:hover": {
-//                         color: theme.palette.common.black,
-//                         fontWeight: "500",
-//                         textDecoration: "underline",
-//                       },
-//                     }}
-//                   >
-//                     Solid Tonal Medium Swim Shorts
-//                   </Box>
-//                   <Box sx={{ fontSize: "14px" }}>
-//                     <del style={{ color: theme.palette.textGray }}>$65.00</del>
-//                     <Typography
-//                       component={"span"}
-//                       sx={{ mx: "6px", fontSize: "15px" }}
-//                     >
-//                       $52.30
-//                     </Typography>
-//                     <Typography
-//                       component={"span"}
-//                       sx={{ color: theme.palette.textGray, fontSize: "15px" }}
-//                     >
-//                       20% off
-//                     </Typography>
-//                   </Box>
-//                   <Box sx={{ mt: "10px" }}>
-//                     <RadioGroup
-//                       row
-//                       value={selectedColor}
-//                       onChange={handleColorChange}
-//                       aria-label="color selection"
-//                       name="color-selection"
-//                     >
-//                       {colors.map((color, colorIndex) => (
-//                         <Radio
-//                           key={colorIndex}
-//                           className="radioBtn"
-//                           value={color.value}
-//                           checked={selectedColor === color.value}
-//                           style={{
-//                             color: color.value,
-//                             padding: "0",
-//                             marginRight: "10px",
-//                             // backgroundColor: color.value,
-//                           }}
-//                         />
-//                       ))}
-//                     </RadioGroup>
-//                   </Box>
-//                   <Box sx={{ mt: "6px" }}>
-//                     <Typography component={"span"} sx={{ mx: "1px" }}>
-//                       <StarIcon fontSize="16px" />
-//                     </Typography>
-//                     <Typography component={"span"} sx={{ mx: "1px" }}>
-//                       <StarIcon fontSize="16px" />
-//                     </Typography>
-//                     <Typography component={"span"} sx={{ mx: "1px" }}>
-//                       <StarIcon fontSize="16px" />
-//                     </Typography>
-//                     <Typography component={"span"} sx={{ mx: "1px" }}>
-//                       <StarIcon fontSize="16px" />
-//                     </Typography>
-//                     <Typography component={"span"} sx={{ mx: "1px" }}>
-//                       <StarIcon fontSize="16px" />
-//                     </Typography>
-//                   </Box>
-//                 </Grid>
-//               ))}
-//             </Grid>
-//           </Box>
-//         </Container>
-//       </Box>
-//     </>
-//   );
-// };
-
-// export default ProductListing;
-
 import React, { useState } from "react";
-import productImg1 from "../../assets/images/Home/Listing/productImg1.png";
-import productImg2 from "../../assets/images/Home/Listing/productImg2.png";
-import productImg3 from "../../assets/images/Home/Listing/productImg3.png";
-import productImg4 from "../../assets/images/Home/Listing/productImg4.png";
 import {
-  Box,
-  Container,
   Grid,
-  Radio,
-  RadioGroup,
+  Card,
   Typography,
-  useTheme,
+  Box,
+  IconButton,
+  Button,
+  Popover,
 } from "@mui/material";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { EffectFade, Navigation, Pagination } from "swiper/modules";
-import "../../../node_modules/swiper/swiper-bundle.min.css";
-import StarIcon from "@mui/icons-material/Star";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+
+import Product1 from "../../assets/images/product/hbeu50481548_001_350.webp";
+import Product2 from "../../assets/images/product/hbeu50527932_404_350.webp";
 import { useNavigate } from "react-router-dom";
 
-const ProductListing = () => {
-  const theme = useTheme();
-  const navigate = useNavigate();
-  const [selectedColor, setSelectedColor] = useState("");
+const products = [
+  {
+    id: 1,
+    image: Product1,
+    hoverImage: Product2,
+    saleText: "Sale -20%",
+    title: "Water-Repellent Padded Jacket with Tonal Logo",
+    originalPrice: "₹21,100.00",
+    discountedPrice: "₹16,500.00",
+    sizes: ["XS", "S", "M", "L", "XL", "XXL", "XXXL"],
+    colors: [
+      { name: "Black", code: "#000000" },
+      { name: "Brown", code: "#8B4513" },
+      { name: "Navy", code: "#000080" },
+      { name: "Blue", code: "#4682B4" },
+      { name: "Purple", code: "#800080" },
+    ],
+  },
+  {
+    id: 2,
+    image: Product2,
+    hoverImage: Product1,
+    saleText: "Sale -40%",
+    title: "Double-Breasted Coat in a Wool Blend",
+    originalPrice: "₹46,000.00",
+    discountedPrice: "₹25,700.00",
+    sizes: ["XS", "S", "M", "L", "XL", "XXL"],
+    colors: [
+      { name: "Black", code: "#000000" },
+      { name: "Brown", code: "#8B4513" },
+      { name: "Gray", code: "#808080" },
+      { name: "Beige", code: "#F5F5DC" },
+      { name: "Green", code: "#008080" },
+      { name: "Navy", code: "#000080" },
+      { name: "Red", code: "#FF0000" },
+      { name: "Orange", code: "#FFA500" },
+    ],
+  },
+  {
+    id: 3,
+    image: Product1,
+    hoverImage: Product2,
+    saleText: "Sale -30%",
+    title: "Cotton-Terry Hoodie with Logo Patch",
+    originalPrice: "₹11,100.00",
+    discountedPrice: "₹7,750.00",
+    sizes: ["M", "L", "XL", "XXL", "XXXL"],
+    colors: [
+      { name: "Black", code: "#000000" },
+      { name: "Brown", code: "#8B4513" },
+      { name: "Gray", code: "#808080" },
+    ],
+  },
+  {
+    id: 4,
+    image: Product2,
+    hoverImage: Product1,
+    saleText: "Sale -40%",
+    title: "Double-Breasted Coat in a Wool Blend",
+    originalPrice: "₹46,000.00",
+    discountedPrice: "₹25,700.00",
+    sizes: ["M", "L", "XL"],
+    colors: [
+      { name: "Black", code: "#000000" },
+      { name: "Brown", code: "#8B4513" },
+      { name: "Gray", code: "#808080" },
+      { name: "Beige", code: "#F5F5DC" },
+      { name: "Green", code: "#008080" },
+      { name: "Navy", code: "#000080" },
+      { name: "Blue", code: "#4682B4" },
+      { name: "Purple", code: "#800080" },
+      { name: "Red", code: "#FF0000" },
+      { name: "Orange", code: "#FFA500" },
+    ],
+  },
+];
 
-  const handleColorChange = (event) => {
-    setSelectedColor(event.target.value);
+const ProductListing = () => {
+  const navigate = useNavigate();
+
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [colorSelections, setColorSelections] = useState({});
+  const [hoveredProduct, setHoveredProduct] = useState(null);
+
+  const handleOpen = (event, productId) => {
+    setAnchorEl({ element: event.currentTarget, productId });
   };
 
-  const singleProductImg = [productImg1, productImg2, productImg3, productImg4];
-  const colors = [
-    { value: "#D3B7A2", label: "Red" },
-    { value: "#000", label: "Green" },
-    { value: "#EBE6EC", label: "Blue" },
-    { value: "#BF7F7F", label: "Yellow" },
-  ];
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
 
-  const handleNavigationButtonClick = (event) => {
-    event.stopPropagation();
+  const handleColorSelect = (colorName, productId) => {
+    setColorSelections((prev) => ({
+      ...prev,
+      [productId]: colorName,
+    }));
+    handleClose();
+  };
+
+  const open = Boolean(anchorEl);
+  const id = open ? "color-popup" : undefined;
+
+  const handleMouseEnter = (productId) => {
+    setHoveredProduct(productId);
+  };
+
+  const handleMouseLeave = () => {
+    setHoveredProduct(null);
   };
 
   return (
-    <>
-      <Box>
-        <Container maxWidth="xl">
-          <Box className="Listing" onClick={() => navigate("/singleProduct")}>
-            <Grid container spacing={3}>
-              {[0, 1, 2].map((index) => (
-                <Grid item xs={12} sm={6} md={4} key={index}>
-                  <Box className="product-container">
-                    <Box sx={{ position: "relative" }}>
-                      <Swiper
-                        fadeEffect={{ crossFade: true }}
-                        effect={"fade"}
-                        navigation={{
-                          nextEl: `.swiper-button-next-${index}`,
-                          prevEl: `.swiper-button-prev-${index}`,
-                        }}
-                        modules={[EffectFade, Navigation, Pagination]}
-                        loop={true}
-                        pagination={{
-                          clickable: true,
-                          renderBullet: (bulletIndex, className) => {
-                            return `<span class="${className} custom-dot"><span class="dash"></span></span>`;
-                          },
-                        }}
-                      >
-                        {singleProductImg.map((item, imgIndex) => (
-                          <SwiperSlide key={imgIndex}>
-                            <Box>
-                              <Box sx={{ objectFit: "contain" }}>
-                                <img
-                                  src={item}
-                                  alt="Product"
-                                  style={{
-                                    width: "100%",
-                                    height: "auto",
-                                    borderRadius: "0",
-                                  }}
-                                />
-                              </Box>
-                            </Box>
-                          </SwiperSlide>
-                        ))}
-                      </Swiper>
-                      <button className="best-seller-button">
-                        Best Seller
-                      </button>
-                      <button
-                        className={`ListingSlider-prev navigation-button swiper-button-prev-${index}`}
-                        onClick={(event) => {
-                          handleNavigationButtonClick(event);
-                        }}
-                      >
-                        <i className="fa-solid fa-chevron-left"></i>
-                      </button>
-                      <button
-                        className={`ListingSlider-next navigation-button swiper-button-next-${index}`}
-                        onClick={(event) => {
-                          handleNavigationButtonClick(event);
-                        }}
-                      >
-                        <i className="fa-solid fa-chevron-right"></i>
-                      </button>
-                    </Box>
-                  </Box>
+    <Box sx={{ mt: "50px", px: { xs: "0px", md: "30px" } }}>
+      <Grid container spacing={{ xs: 0.2, sm: 2, md: 3 }}>
+        {products.map((product) => {
+          const selectedColor = colorSelections[product.id] || "Black";
+          const selectedColorCode = product.colors.find(
+            (color) => color.name === selectedColor
+          )?.code;
+
+          return (
+            <Grid
+              item
+              xs={6}
+              sm={6}
+              md={4}
+              lg={4}
+              xl={3}
+              key={product.id}
+              onMouseEnter={() => handleMouseEnter(product.id)}
+              onMouseLeave={handleMouseLeave}
+            >
+              <Card
+                sx={{
+                  position: "relative",
+                  borderRadius: "0px",
+                  overflow: "visible",
+                  boxShadow: "none",
+                }}
+              >
+                <Box
+                  sx={{
+                    position: "relative",
+                    "&:hover .size-box": {
+                      opacity: 1,
+                      transform: "translateY(0)",
+                    },
+                  }}
+                >
                   <Box
+                    component="img"
+                    src={product.image}
+                    alt="Product"
                     sx={{
-                      fontSize: "13px",
-                      my: "10px",
+                      width: "100%",
+                      height: "100%",
+                      transition: "opacity 0.3s ease",
+                    }}
+                  />
+                  <Box
+                    onClick={() => navigate("/singleProduct")}
+                    component="img"
+                    src={product.hoverImage}
+                    alt="Product Hover"
+                    sx={{
+                      width: "100%",
+                      height: "100%",
+                      position: "absolute",
+                      top: 0,
+                      left: 0,
+                      opacity: hoveredProduct === product.id ? 1 : 0,
+                      transition: "opacity 0.3s ease",
                       cursor: "pointer",
-                      display: "inline-block",
-                      color: theme.palette.textGray,
+                    }}
+                  />
+                  <Box
+                    className="size-box"
+                    sx={{
+                      position: "absolute",
+                      bottom: 0,
+                      left: 0,
+                      width: "100%",
+                      backgroundColor: "rgba(255, 255, 255, 0.9)",
+                      padding: { xs: "8px", sm: "10px", md: "15px" },
+                      textAlign: "start",
+                      opacity: 0,
+                      transform: "translateY(20px)",
+                      transition: "opacity 0.3s ease, transform 0.3s ease",
+                    }}
+                  >
+                    <Typography
+                      variant="body2"
+                      sx={{
+                        mb: { xs: 1, sm: 1.5 },
+                        fontSize: { xs: "8px", sm: "12px", md: "14px" },
+                        mx: 1,
+                      }}
+                    >
+                      <strong>Quick Shop</strong> (Select Your Size)
+                    </Typography>
+                    <Grid
+                      container
+                      spacing={{ xs: 1, sm: 2 }}
+                      justifyContent="start"
+                      alignItems="center"
+                    >
+                      {product.sizes.map((size) => (
+                        <Grid item xs={3} sm={2.3} md={3} lg={2.3} key={size}>
+                          <Box
+                            sx={{
+                              width: "100%",
+                              height: { xs: "30px", sm: "35px", md: "40px" },
+                              display: "flex",
+                              alignItems: "center",
+                              justifyContent: "center",
+                              cursor: "pointer",
+                              fontSize: { xs: "12px", sm: "14px", md: "14px" },
+                              fontWeight: "500",
+                              "&:hover": {
+                                textDecorationLine: "underline",
+                                fontWeight: "800",
+                              },
+                            }}
+                          >
+                            {size}
+                          </Box>
+                        </Grid>
+                      ))}
+                    </Grid>
+                  </Box>
+                  <IconButton
+                    sx={{
+                      position: "absolute",
+                      top: { xs: "auto", sm: "15px" },
+                      bottom: { xs: "-10px", sm: "auto" },
+                      right: "15px",
+                      background: "white",
+                      border: "1px solid #eee",
+                      borderRadius: "50%",
+                      padding: "8px",
                       "&:hover": {
-                        color: theme.palette.common.black,
-                        fontWeight: "500",
-                        textDecoration: "underline",
+                        background: "rgba(255, 255, 255, 0.8)",
                       },
                     }}
                   >
-                    Solid Tonal Medium Swim Shorts
-                  </Box>
-                  <Box sx={{ fontSize: "14px" }}>
-                    <del style={{ color: theme.palette.textGray }}>$65.00</del>
+                    <FavoriteBorderIcon
+                      sx={{
+                        color: "black",
+                        fontWeight: "100",
+                        fontSize: { xs: 16, sm: 26 },
+                      }}
+                    />
+                  </IconButton>
+                  <Typography
+                    variant="body2"
+                    sx={{
+                      position: "absolute",
+                      top: { xs: "4px", sm: "15px" },
+                      left: { xs: "4px", sm: "-12px" },
+                      background: "black",
+                      color: "white",
+                      padding: { xs: "4px 12px", sm: "2px 24px" },
+                      fontSize: { xs: "8px", sm: "12px", md: "14px" },
+                      whiteSpace: "nowrap",
+                    }}
+                  >
+                    {product.saleText}
+                  </Typography>
+                </Box>
+                <Box
+                  sx={{
+                    padding: "10px 15px 10px 0",
+                    mt: { xs: 1, sm: 0 },
+                    ml: { xs: 1, sm: 0 },
+                  }}
+                >
+                  <Typography
+                    variant="body2"
+                    sx={{
+                      color: "black",
+                      mb: 1,
+                      fontSize: { xs: "12px", sm: "14px" },
+                      fontWeight: "600",
+                      whiteSpace: "nowrap",
+                      overflow: "hidden",
+                      textOverflow: "ellipsis",
+                      textTransform: "uppercase",
+                    }}
+                  >
+                    {product.title}
+                  </Typography>
+                  <Box
+                    sx={{
+                      display: { xs: "block", sm: "flex" },
+                      alignItems: "center",
+                      gap: 1,
+                    }}
+                  >
                     <Typography
-                      component={"span"}
-                      sx={{ mx: "6px", fontSize: "15px" }}
+                      variant="body2"
+                      sx={{
+                        textDecoration: "line-through",
+                        color: "#000",
+                        fontSize: { xs: "14px", sm: "16px" },
+                        fontWeight: "600",
+                      }}
                     >
-                      $52.30
+                      {product.originalPrice}
                     </Typography>
                     <Typography
-                      component={"span"}
-                      sx={{ color: theme.palette.textGray, fontSize: "15px" }}
+                      variant="body2"
+                      sx={{
+                        color: "#b51f29",
+                        fontWeight: "bold",
+                        fontSize: { xs: "16px", sm: "18px" },
+                        fontWeight: "600",
+                      }}
                     >
-                      20% off
+                      {product.discountedPrice}
                     </Typography>
                   </Box>
-                  <Box sx={{ mt: "10px" }}>
-                    <RadioGroup
-                      row
-                      value={selectedColor}
-                      onChange={handleColorChange}
-                      aria-label="color selection"
-                      name="color-selection"
-                    >
-                      {colors.map((color, colorIndex) => (
-                        <Radio
-                          key={colorIndex}
-                          className="radioBtn"
-                          value={color.value}
-                          checked={selectedColor === color.value}
-                          style={{
-                            color: color.value,
-                            padding: "0",
-                            marginRight: "10px",
-                          }}
-                        />
-                      ))}
-                    </RadioGroup>
+                  <Button
+                    onClick={(event) => handleOpen(event, product.id)}
+                    sx={{
+                      color: "#000",
+                      bgcolor: "#FFF",
+                      my: 2,
+                      border: "0.5px solid #000",
+                      borderRadius: "0px",
+                      textTransform: "capitalize",
+                    }}
+                  >
+                    <Box
+                      sx={{
+                        width: 22,
+                        height: 22,
+                        borderRadius: "50%",
+                        backgroundColor: selectedColorCode,
+                        display: "inline-block",
+                        marginRight: 1,
+                        border: "1px solid #ddd",
+                      }}
+                    ></Box>
+                    +{product.colors.length - 1} Colors
+                  </Button>
+                </Box>
+                <Popover
+                  id={id}
+                  open={open && anchorEl?.productId === product.id}
+                  anchorEl={anchorEl?.element}
+                  onClose={handleClose}
+                  anchorOrigin={{
+                    vertical: "top",
+                    horizontal: "center",
+                  }}
+                  transformOrigin={{
+                    vertical: "bottom",
+                    horizontal: "center",
+                  }}
+                >
+                  <Typography variant="body1" sx={{ p: "10px 0 0 20px" }}>
+                    Color: <strong>{selectedColor}</strong>
+                  </Typography>
+                  <Box
+                    sx={{
+                      padding: 2,
+                      display: "grid",
+                      gridTemplateColumns: "repeat(auto-fill, 40px)",
+                      gap: 1,
+                      maxWidth: 300,
+                    }}
+                  >
+                    {product.colors.map((color) => (
+                      <Box
+                        key={color.name}
+                        onClick={() =>
+                          handleColorSelect(color.name, product.id)
+                        }
+                        sx={{
+                          width: 30,
+                          height: 30,
+                          borderRadius: "50%",
+                          backgroundColor: color.code,
+                          border:
+                            selectedColor === color.name
+                              ? "1.5px solid #000"
+                              : "1px solid #ddd",
+                          cursor: "pointer",
+                        }}
+                        title={color.name}
+                      />
+                    ))}
                   </Box>
-                  <Box sx={{ mt: "6px" }}>
-                    <Typography component={"span"} sx={{ mx: "1px" }}>
-                      <StarIcon fontSize="16px" />
-                    </Typography>
-                    <Typography component={"span"} sx={{ mx: "1px" }}>
-                      <StarIcon fontSize="16px" />
-                    </Typography>
-                    <Typography component={"span"} sx={{ mx: "1px" }}>
-                      <StarIcon fontSize="16px" />
-                    </Typography>
-                    <Typography component={"span"} sx={{ mx: "1px" }}>
-                      <StarIcon fontSize="16px" />
-                    </Typography>
-                    <Typography component={"span"} sx={{ mx: "1px" }}>
-                      <StarIcon fontSize="16px" />
-                    </Typography>
-                  </Box>
-                </Grid>
-              ))}
+                </Popover>
+              </Card>
             </Grid>
-          </Box>
-        </Container>
-      </Box>
-    </>
+          );
+        })}
+      </Grid>
+    </Box>
   );
 };
 

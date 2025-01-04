@@ -2,8 +2,10 @@ import { Box, Button, Container, Typography } from "@mui/material";
 import React from "react";
 import img from "../../assets/images/Home/hero/image.jpeg";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import { useNavigate } from "react-router-dom";
 
 const Hero = () => {
+  const navigate = useNavigate();
   return (
     <Box sx={{ mt: "70px" }}>
       <Box
@@ -62,6 +64,7 @@ const Hero = () => {
               </Typography>
               <Box>
                 <Button
+                  onClick={() => navigate("/product")}
                   className="lato"
                   sx={{
                     backgroundColor: "#b51f29",
@@ -102,6 +105,7 @@ const Hero = () => {
                   <ArrowForwardIcon className="arrow-icon" />
                 </Button>
                 <Button
+                  onClick={() => navigate("/product")}
                   className="lato"
                   sx={{
                     backgroundColor: "#b51f29",

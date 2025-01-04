@@ -26,6 +26,7 @@ import handPickedImg12 from "../../assets/images/Home/handPickedForYou/handpicke
 import handPickedImg13 from "../../assets/images/Home/handPickedForYou/handpicked13.png";
 import handPickedImg14 from "../../assets/images/Home/handPickedForYou/handpicked14.png";
 import handPickedImg15 from "../../assets/images/Home/handPickedForYou/handpicked15.png";
+import { useNavigate } from "react-router-dom";
 
 const HandPickedForYou = () => {
   const theme = useTheme();
@@ -112,6 +113,8 @@ const HandPickedForYou = () => {
   const handleClick = (category) => {
     setSelectedCategory(category);
   };
+
+  const navigate = useNavigate();
 
   return (
     <>
@@ -206,6 +209,7 @@ const HandPickedForYou = () => {
                             transition: "0.5s",
                           },
                         }}
+                        onClick={() => navigate("/singleProduct")}
                       >
                         <Box
                           sx={{

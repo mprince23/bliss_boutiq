@@ -4,8 +4,11 @@ import image from "../../assets/images/Home/Subscribe/1.webp";
 import image1 from "../../assets/images/Home/Subscribe/2.webp";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import { useNavigate } from "react-router-dom";
 
 const Subscribe = () => {
+  const navigate = useNavigate();
+
   return (
     <Box sx={{ my: { xs: "20px", sm: "30px" }, bgcolor: "#F6F6F6" }}>
       <Box
@@ -32,7 +35,13 @@ const Subscribe = () => {
             fontSize: { xs: "30px", sm: "40px", md: "50px" },
           }}
         />
-        <Typography sx={{ fontSize: { xs: "12px", sm: "14px", md: "16px" } }}>
+        <Typography
+          onClick={() => navigate("/product")}
+          sx={{
+            fontSize: { xs: "12px", sm: "14px", md: "16px" },
+            cursor: "pointer",
+          }}
+        >
           Shop
         </Typography>
         <ArrowForwardIosIcon

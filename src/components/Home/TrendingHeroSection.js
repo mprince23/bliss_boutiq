@@ -3,6 +3,7 @@ import { Box, Button, Container, Grid, Typography } from "@mui/material";
 import trending1 from "../../assets/images/Home/trendingHeroSection/trending1.png";
 import restrending1 from "../../assets/images/Home/resTrending/restrending1.png";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import { useNavigate } from "react-router-dom";
 
 const TrendingHeroSection = ({
   img,
@@ -13,6 +14,8 @@ const TrendingHeroSection = ({
   align,
   textColor,
 }) => {
+  const navigate = useNavigate();
+
   return (
     <Box>
       <Box
@@ -68,6 +71,7 @@ const TrendingHeroSection = ({
                 </Typography>
               </Box>
               <Button
+                onClick={() => navigate("/product")}
                 sx={{
                   backgroundColor: "#000",
                   color: "#ffffff",
@@ -107,6 +111,7 @@ const TrendingHeroSection = ({
                 <ArrowForwardIcon className="arrow-icon" />
               </Button>
               <Button
+                onClick={() => navigate("/product")}
                 sx={{
                   backgroundColor: "#000",
                   color: "#ffffff",

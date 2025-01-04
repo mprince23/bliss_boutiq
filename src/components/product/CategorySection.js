@@ -27,7 +27,14 @@ const categories = [
 const CategorySection = () => {
   return (
     <Box sx={{ bgcolor: "#f9f9f9", py: 4 }}>
-      <Box sx={{ display: "flex", justifyContent: "center", gap: "50px" }}>
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          gap: "50px",
+          cursor: "pointer",
+        }}
+      >
         {categories.map((category, index) => (
           <Box textAlign="center" key={index}>
             <Typography

@@ -10,8 +10,11 @@ import category2Img4 from "../../assets/images/Home/category2/categoryImg4.png";
 import category2Img5 from "../../assets/images/Home/category2/categoryImg5.png";
 import category2Img6 from "../../assets/images/Home/category2/categoryImg6.png";
 import category2Img7 from "../../assets/images/Home/category2/categoryImg7.png";
+import { useNavigate } from "react-router-dom";
 
 const Category2 = () => {
+  const navigate = useNavigate();
+
   const theme = useTheme();
   const categoryBox = [
     {
@@ -52,7 +55,7 @@ const Category2 = () => {
   ];
   return (
     <>
-      <Box sx={{my: "70px"}}>
+      <Box sx={{ my: "70px" }}>
         <Container maxWidth="xl">
           <Box sx={{ position: "relative" }}>
             <Box
@@ -95,7 +98,10 @@ const Category2 = () => {
                 >
                   {categoryBox.map((item) => (
                     <SwiperSlide key={item.title}>
-                      <Box sx={{ position: "relative" }}>
+                      <Box
+                        sx={{ position: "relative", cursor: "pointer" }}
+                        onClick={() => navigate("/product")}
+                      >
                         <Box
                           sx={{
                             position: "relative",
@@ -110,7 +116,7 @@ const Category2 = () => {
                           <Box
                             sx={{
                               position: "absolute",
-                              bottom: {sm:"0px",xs: "4px"},
+                              bottom: { sm: "0px", xs: "4px" },
                               left: 0,
                               right: 0,
                               height: "50%",

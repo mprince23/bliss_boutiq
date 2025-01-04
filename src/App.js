@@ -13,11 +13,10 @@ import Contact from "./pages/contact/Contact";
 import CartPage from "./components/cart/CartPage";
 import SingleProduct from "./components/Home/SingleProduct";
 import Profile from "./pages/profile/Profile";
-import Product from "./components/product/Product";
 import { RecoilRoot } from "recoil";
 import Hero from "./components/product/Hero";
-import img from "./assets/images/product/hero/1.webp";
 import CategorySection from "./components/product/CategorySection";
+import ProductPage from "./pages/Product/Product";
 
 function App() {
   function ScrollToTop() {
@@ -30,10 +29,9 @@ function App() {
 
   return (
     <>
-      <Header />
-      <Hero img={img} />
-      <CategorySection />
-      {/* <RecoilRoot>
+      
+      <RecoilRoot>
+        <Header />
         <ScrollToTop />
         <Routes>
           <Route path="/" element={<Home />} />
@@ -46,12 +44,12 @@ function App() {
           <Route path="/cart" element={<CartPage />} />
           <Route path="/signUp" element={<Register_form />} />
           <Route path="/singleProduct" element={<SingleProduct />} />
-          <Route path="/product" element={<Product />} />
+          <Route path="/product" element={<ProductPage />} />
           <Route path="/contact" element={<Contact />} />
         </Routes>
 
         <Footer />
-      </RecoilRoot> */}
+      </RecoilRoot>
     </>
   );
 }
