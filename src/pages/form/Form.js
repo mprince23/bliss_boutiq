@@ -33,12 +33,21 @@ const Form = () => {
               color: "#000",
               borderBottom: "4px solid #000",
             },
-            padding: {sm:"0 50px"},
+            padding: { sm: "0 50px" },
           }}
         >
-          <Tab label="LOG IN" sx={{ fontSize: "12px" }} />
-          <Tab label="REGISTER" sx={{ fontSize: "12px" }} />
-          <Tab label="ACTIVATE" sx={{ fontSize: "12px" }} />
+          <Tab
+            label="LOG IN"
+            sx={{ color: "#000 !important", fontSize: "12px" }}
+          />
+          <Tab
+            label="REGISTER"
+            sx={{ color: "#000 !important", fontSize: "12px" }}
+          />
+          <Tab
+            label="ACTIVATE"
+            sx={{ color: "#000 !important", fontSize: "12px" }}
+          />
         </Tabs>
         <Box
           sx={{

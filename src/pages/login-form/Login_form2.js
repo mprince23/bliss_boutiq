@@ -2,7 +2,6 @@ import {
   Box,
   Button,
   Checkbox,
-  Container,
   Grid,
   IconButton,
   TextField,
@@ -11,60 +10,141 @@ import {
 import React, { useState } from "react";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
+import { useFormik } from "formik";
+import { useNavigate } from "react-router-dom";
+import * as Yup from "yup";
+import { toast } from "react-toastify";
+import { profile } from "../../atoms/authAtoms";
+import { useRecoilState } from "recoil";
+import { useTheme } from "@emotion/react";
+import axiosInstance from "../../Instance";
 
 const Login_form2 = () => {
   const [showPassword, setShowPassword] = useState(false);
-
+  const theme = useTheme();
+  const [profileData, setProfileData] = useRecoilState(profile);
   const handleClickShowPassword = () => setShowPassword(!showPassword);
+  const navigate = useNavigate();
+  const notify = () => toast.success("Login successful 🎉");
+  const notifyError = (message) => toast.error(message);
+
+  const formik = useFormik({
+    initialValues: {
+      email: "",
+      password: "",
+    },
+
+    validationSchema: Yup.object({
+      email: Yup.string()
+        .matches(
+          /^[\w.-]+@[a-zA-Z\d.-]+\.[a-zA-Z]{2,}$/,
+          "Invalid email address"
+        )
+        .required("Enter a valid email"),
+      password: Yup.string().required("Enter a valid password"),
+    }),
+
+    onSubmit: (values, actions) => {
+      axiosInstance
+        .post("/api/user/login", values)
+        .then((response) => {
+          console.log(response);
+          const { token } = response.data; // Assuming token is in response.data.token
+
+          // Store token in a cookie for 7 days
+          localStorage.setItem("token", token, { expires: 7 });
+
+          setProfileData(response.data.data);
+          actions.resetForm();
+          navigate("/cart");
+          notify();
+        })
+        .catch((error) => {
+          const status = error.response ? error.response.status : 500;
+          switch (status) {
+            case 400:
+              notifyError("Bad request. Please check your input.");
+              break;
+            case 401:
+              notifyError("Unauthorized. Please check your credentials.");
+              break;
+            case 403:
+              notifyError(
+                "Forbidden. You don't have permission to perform this action."
+              );
+              break;
+            case 404:
+              notifyError(
+                "Not found. The requested resource could not be found."
+              );
+              break;
+            case 500:
+              notifyError("Internal server error. Please try again later.");
+              break;
+            default:
+              notifyError("An unknown error occurred. Please try again.");
+              break;
+          }
+        });
+    },
+  });
 
   return (
     <Box>
-      <Box>
-        {/* <Container maxWidth="xl"> */}
-        <Grid container justifyContent="center">
-          <Grid
-            item
-            xs={12}
-            sx={{
-              width: "100%",
-              padding: { xs: "20px", sm: "40px", md: "54px" },
-            }}
-          >
-            <Box>
-              <Typography
-                className="lato"
-                sx={{
-                  fontSize: { xs: "20px", sm: "24px", md: "32px" },
-                  fontWeight: "800",
-                  marginBottom: 2,
-                }}
-              >
-                Log in to HUGO BOSS EXPERIENCE
-              </Typography>
-            </Box>
-            <Box sx={{ marginBottom: 2 }}>
-              <Typography
-                component="p"
-                sx={{
-                  fontSize: { xs: "14px", sm: "16px" },
-                  marginBottom: 2,
-                }}
-              >
-                Login and enjoy member-only benefits and promotions with HUGO
-                BOSS EXPERIENCE.
-              </Typography>
-              <Typography
-                component="p"
-                sx={{
-                  fontSize: { xs: "14px", sm: "16px" },
-                }}
-              >
-                Please complete all fields marked with an *.
-              </Typography>
-            </Box>
+      <Grid container justifyContent="center">
+        <Grid
+          item
+          xs={12}
+          sx={{
+            width: "100%",
+            padding: { xs: "20px", sm: "40px", md: "54px" },
+          }}
+        >
+          <Box>
+            <Typography
+              className="lato"
+              sx={{
+                fontSize: { xs: "20px", sm: "24px", md: "32px" },
+                fontWeight: "800",
+                marginBottom: 2,
+              }}
+            >
+              Log in to BLISS BOUTIQ
+            </Typography>
+          </Box>
+          <Box sx={{ marginBottom: 2 }}>
+            <Typography
+              component="p"
+              sx={{
+                fontSize: { xs: "14px", sm: "16px" },
+                marginBottom: 2,
+              }}
+            >
+              Login and enjoy member-only benefits and promotions with BLISS
+              BOUTIQ.
+            </Typography>
+            <Typography
+              component="p"
+              sx={{
+                fontSize: { xs: "14px", sm: "16px" },
+              }}
+            >
+              Please complete all fields marked with an *.
+            </Typography>
+          </Box>
+
+          <form onSubmit={formik.handleSubmit} onReset={formik.handleReset}>
             <Grid container spacing={2}>
               <Grid item xs={12}>
-                <TextField fullWidth label="Email" name="email" />
+                <TextField
+                  fullWidth
+                  label="Email"
+                  name="email"
+                  value={formik.values.email}
+                  onChange={formik.handleChange}
+                  error={formik.touched.email && Boolean(formik.errors.email)}
+                  helperText={formik.touched.email && formik.errors.email}
+                />
               </Grid>
               <Grid item xs={12}>
                 <Box sx={{ position: "relative" }}>
@@ -73,6 +153,13 @@ const Login_form2 = () => {
                     label="Password"
                     name="password"
                     type={showPassword ? "text" : "password"}
+                    value={formik.values.password}
+                    onChange={formik.handleChange}
+                    error={
+                      formik.touched.password &&
+                      Boolean(formik.errors.password)
+                    }
+                    helperText={formik.touched.password && formik.errors.password}
                   />
                   <IconButton
                     onClick={handleClickShowPassword}
@@ -128,10 +215,9 @@ const Login_form2 = () => {
                 </Box>
               </Grid>
             </Grid>
-          </Grid>
+          </form>
         </Grid>
-        {/* </Container> */}
-      </Box>
+      </Grid>
     </Box>
   );
 };

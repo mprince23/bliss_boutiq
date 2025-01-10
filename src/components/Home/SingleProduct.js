@@ -1,3 +1,6 @@
+import img6 from "../../assets/images/Home/SingleProduct/pro-6.webp";
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import {
   Accordion,
   AccordionDetails,
@@ -13,44 +16,44 @@ import {
 } from "@mui/material";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
-import "../../../node_modules/swiper/swiper-bundle.min.css";
-import React, { useRef, useState } from "react";
-import img1 from "../../assets/images/Home/SingleProduct/pro-1.webp";
-import img2 from "../../assets/images/Home/SingleProduct/pro-2.webp";
-import img3 from "../../assets/images/Home/SingleProduct/pro-3.webp";
-import img4 from "../../assets/images/Home/SingleProduct/pro-4.webp";
-import img5 from "../../assets/images/Home/SingleProduct/pro-5.webp";
-import img6 from "../../assets/images/Home/SingleProduct/pro-6.webp";
-import mini1 from "../../assets/images/Home/SingleProduct/miniImg-1.jpg";
-import mini2 from "../../assets/images/Home/SingleProduct/miniImg-2.jpg";
-import mini3 from "../../assets/images/Home/SingleProduct/miniImg-3.jpg";
-import mini4 from "../../assets/images/Home/SingleProduct/miniImg-4.jpg";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import "../../../node_modules/swiper/swiper-bundle.min.css";
+import axiosInstance from "../../Instance";
 
 function SingleProduct() {
-  const swiperRef = useRef(null);
+  const { id } = useParams();
+  const [productData, setProductData] = useState(null);
+  const [qty, setQty] = useState(1);
   const [expanded, setExpanded] = useState(false);
+  const theme = useTheme();
+
+
+  useEffect(() => {
+    const fetchProduct = async () => {
+      try {
+        const response = await axiosInstance.get(`/api/product/${id}`);
+        setProductData(response.data);
+      } catch (error) {
+        console.error("Error fetching product data", error);
+      }
+    };
+
+    fetchProduct();
+  }, [id]);
+
 
   const handleChange = (panel) => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
   };
 
-  const theme = useTheme();
-  const [qty, setQty] = useState("");
 
   const handleChange1 = (event) => {
     setQty(event.target.value);
   };
 
-  const singleProductImg = [
-    { img: img1 },
-    { img: img2 },
-    { img: img3 },
-    { img: img4 },
-    { img: img5 },
-    { img: img6 },
-  ];
+  if (!productData) {
+    return <Typography>Loading...</Typography>;
+  }
   return (
     <>
       <Box my={5}>
@@ -67,9 +70,9 @@ function SingleProduct() {
             >
               <Box>
                 <Grid container>
-                  {singleProductImg.map((item, index) => (
+                  {productData.product_images.map((productImage, index) => (
                     <Grid item md={6} key={index}>
-                      <img src={item.img} alt={item.img} />
+                      <img src={productImage} alt={productImage} />
                     </Grid>
                   ))}
                 </Grid>
@@ -77,7 +80,6 @@ function SingleProduct() {
             </Grid>
             <Grid xs={12} sx={{ display: { xs: "block", md: "none" } }}>
               <Swiper
-                ref={swiperRef}
                 navigation={{
                   nextEl: ".swiper-button-next",
                   prevEl: ".swiper-button-prev",
@@ -92,20 +94,18 @@ function SingleProduct() {
                   },
                 }}
               >
-                {singleProductImg.map((item,index) => (
+                {productData.product_images.map((productImage, index) => (
                   <SwiperSlide key={index}>
-                    <Box>
-                      <Box sx={{ objectFit: "contain" }}>
-                        <img
-                          src={item.img}
-                          alt="Product"
-                          style={{
-                            width: "100%",
-                            height: "auto",
-                            borderRadius: "0",
-                          }}
-                        />
-                      </Box>
+                    <Box sx={{ objectFit: "contain" }}>
+                      <img
+                        src={productImage}
+                        alt="Product"
+                        style={{
+                          width: "100%",
+                          height: "auto",
+                          borderRadius: "0",
+                        }}
+                      />
                     </Box>
                   </SwiperSlide>
                 ))}
@@ -136,7 +136,7 @@ function SingleProduct() {
                           fontSize: "14px",
                         }}
                       >
-                        Men
+                        {productData?.category}
                       </Typography>
                       <Typography component="span" sx={{ padding: "0px 10px" }}>
                         /
@@ -152,7 +152,7 @@ function SingleProduct() {
                           fontSize: "14px",
                         }}
                       >
-                        Clothing
+                        {productData?.sub_category}
                       </Typography>
                       <Typography component="span" sx={{ padding: "0px 10px" }}>
                         /
@@ -168,7 +168,7 @@ function SingleProduct() {
                           fontSize: "14px",
                         }}
                       >
-                        Shirts
+                        {productData?.title}
                       </Typography>
                     </Box>
                   </Box>
@@ -182,7 +182,7 @@ function SingleProduct() {
                         marginTop: { xl: "0px", md: "20px", lg: "0px" },
                       }}
                     >
-                      BOSS
+                      {productData?.brand}
                     </Typography>
                   </Box>
                 </Box>
@@ -196,7 +196,7 @@ function SingleProduct() {
                       marginTop: { md: "32px", xs: "0px" },
                     }}
                   >
-                    SLIM-FIT DRESS SHIRT IN EASY-IRON STRETCH COTTON
+                    {productData?.title}
                   </Typography>
                 </Box>
                 <Box>
@@ -208,7 +208,7 @@ function SingleProduct() {
                       marginTop: "22px",
                     }}
                   >
-                    ₹ 10.300,00
+                    ₹ {parseFloat(productData?.price.discounted_price).toFixed(2)}
                     <Typography
                       component="span"
                       sx={{
@@ -218,7 +218,6 @@ function SingleProduct() {
                         fontWeight: "400",
                       }}
                     >
-                      {" "}
                       Price excl. VAT
                     </Typography>
                   </Typography>
@@ -293,56 +292,42 @@ function SingleProduct() {
                     </Typography>
                   </Box>
                   <Box mt={2}>
-                    <Box
-                      sx={{
-                        border: "1px solid #cccccc",
-                        display: "inline-block",
-                        padding: { md: "20px 64px", xs: "15px 32px" },
-                        margin: "0px 10px 10px 0px",
-                        fontSize: "13px",
-                        fontWeight: "600",
-                        transition: "0.3s",
-                        "&:hover": {
-                          border: "1px solid #000000",
-                        },
-                      }}
-                    >
-                      XS
-                    </Box>
-                    <Box
-                      sx={{
-                        border: "1px solid #cccccc",
-                        display: "inline-block",
-                        padding: { md: "20px 64px", xs: "15px 32px" },
-                        margin: "0px 10px 10px 0px",
-                        fontSize: "13px",
-                        fontWeight: "600",
-                        transition: "0.3s",
-                        "&:hover": {
-                          border: "1px solid #000000",
-                        },
-                      }}
-                    >
-                      XS
-                    </Box>
+                    {/* Iterate through size_options array and display each size dynamically */}
+                    {productData?.size_options?.map((option, index) => (
+                      <Box
+                        key={index}
+                        sx={{
+                          border: "1px solid #cccccc",
+                          display: "inline-flex",
+                          flexWrap: "wrap",
+                          padding: { md: "20px 30px", xs: "15px 32px" },
+                          margin: "0px 10px 10px 0px",
+                          fontSize: "13px",
+                          fontWeight: "600",
+                          transition: "0.3s",
+                          color: option.stock > 0 ? "black" : "#721c24",
+                          "&:hover": {
+                            border: "1px solid #000000",
+                          },
+                          justifyContent: "center",
+                          width: "calc(50% - 10px)",
+                        }}
+                      >
+                        {/* Display the size */}
+                        {option.size} ({option.stock} in stock)
+                      </Box>
+                    ))}
                   </Box>
                 </Box>
                 <Box mt={5} display={{ md: "flex", xs: "block" }}>
-                  <FormControl
-                    sx={{
-                      width: "250px",
-                      padding: { xs: "12px 0px", md: "0px" },
-                      margin: { xs: "0px 0px 0px 0px", md: "0px 10px 0px 0px" },
-                    }}
-                  >
+                  <FormControl sx={{ width: "250px" }}>
                     <InputLabel>Qty</InputLabel>
                     <Select value={qty} label="Qty" onChange={handleChange1}>
-                      <MenuItem value={1}>1</MenuItem>
-                      <MenuItem value={2}>2</MenuItem>
-                      <MenuItem value={3}>3</MenuItem>
-                      <MenuItem value={4}>4</MenuItem>
-                      <MenuItem value={5}>5</MenuItem>
-                      <MenuItem value={6}>6</MenuItem>
+                      {[1, 2, 3, 4, 5, 6].map((quantity) => (
+                        <MenuItem key={quantity} value={quantity}>
+                          {quantity}
+                        </MenuItem>
+                      ))}
                     </Select>
                   </FormControl>
                   <button
@@ -360,89 +345,25 @@ function SingleProduct() {
                     ADD TO CART
                   </button>
                 </Box>
-                <Box
-                  mt={3}
-                  bgcolor={theme.palette.liteGrayBack}
-                  display={"flex"}
-                  justifyContent={"space-between"}
-                  sx={{ padding: "5px" }}
-                >
-                  <Typography
-                    sx={{
-                      fontSize: "16px",
-                      fontWeight: "bold",
-                      display: "flex",
-                      alignItems: "center",
-                    }}
-                  >
+                <Box mt={3} bgcolor={theme.palette.liteGrayBack} display={"flex"} justifyContent={"space-between"} sx={{ padding: "5px" }}>
+                  <Typography sx={{ fontSize: "16px", fontWeight: "bold", display: "flex", alignItems: "center", }} >
                     MAKE YOUR LOOK PERFECT
                   </Typography>
                   <Typography display={"flex"}>
-                    <Box
-                      sx={{
-                        width: "32px",
-                        height: "52px",
-                        margin: "0px 0px 0px 16px",
-                        display: "flex",
-                        alignItems: "center",
-                      }}
-                    >
-                      <img src={mini2} alt={mini2} />
+                    <Box sx={{ width: "32px", height: "52px", margin: "0px 0px 0px 16px", display: "flex", alignItems: "center", }}>
+                      <img
+                        src={productData?.product_images[0]}
+                        alt="Product Image"
+                      />
                     </Box>
                   </Typography>
                 </Box>
+
                 <Box mt={3}>
-                  <Accordion
-                    sx={{ boxShadow: "none" }}
-                    expanded={expanded === "panel1"}
-                    onChange={handleChange("panel1")}
-                  >
-                    <AccordionSummary
-                      className="lato"
-                      expandIcon={<ExpandMoreIcon />}
-                      aria-controls="panel1-content"
-                      id="panel1-header"
-                      sx={{
-                        fontWeight: "bold",
-                        borderBottom: "1px solid #CECECE",
-                      }}
-                    >
-                      DETAILS
-                    </AccordionSummary>
+                  <Accordion sx={{ fontWeight: "bold", fontSize: "16px", boxShadow: 'none' }} expanded={expanded === "panel1"} onChange={handleChange("panel1")}>
+                    <AccordionSummary sx={{ px: 0 }} expandIcon={<ExpandMoreIcon />}>DETAILS</AccordionSummary>
                     <AccordionDetails>
-                      <Typography
-                        variant="p"
-                        sx={{
-                          fontSize: "16px",
-                          fontWeight: "bold",
-                          color: theme.palette.textLightGray,
-                        }}
-                      >
-                        STYLE H-HANK-TUX1-DC-224 - 50480093
-                      </Typography>
-                      <Typography
-                        sx={{
-                          fontSize: "16px",
-                          paddingTop: "15px",
-                        }}
-                      >
-                        ___ An elegant long-sleeved shirt by BOSS Menswear with
-                        double cuffs. Treated with an easy-iron finish that
-                        offers softness against the skin, this slim-fitting
-                        shirt is crafted in Austrian-made stretch-cotton poplin
-                        for natural comfort with a breathable feel. The white
-                        colourway is created using an eco-friendly process that
-                        delivers enhanced colour brilliance wash after wash.
-                      </Typography>
-                      <Typography
-                        sx={{
-                          paddingTop: "15px",
-                        }}
-                      >
-                        Slim fit
-                      </Typography>
-                      <Typography>Kent collar</Typography>
-                      <Typography>Double cuffs</Typography>
+                      <Typography className="lato" >{productData?.description}</Typography>
                     </AccordionDetails>
                   </Accordion>
                   <Accordion
@@ -464,43 +385,17 @@ function SingleProduct() {
                       MATERIAL INFORMATION & CARE INSTRUCTIONS
                     </AccordionSummary>
                     <AccordionDetails>
-                      <Typography variant="p">100% Cotton</Typography>
-                      <Typography sx={{ paddingTop: "20px", fontSize: "16px" }}>
-                        <i
-                          style={{ padding: "0px 10px 0px 0px" }}
-                          className="fa-solid fa-box"
-                        ></i>
-                        40°C coloured wash
-                      </Typography>
-                      <Typography sx={{ paddingTop: "5px", fontSize: "16px" }}>
-                        <i
-                          style={{ padding: "0px 10px 0px 0px" }}
-                          className="fa-regular fa-circle-xmark"
-                        ></i>
-                        Do Not Bleach
-                      </Typography>
-                      <Typography sx={{ paddingTop: "5px", fontSize: "16px" }}>
-                        <i
-                          style={{ padding: "0px 10px 0px 0px" }}
-                          className="fa-solid fa-rectangle-xmark"
-                        ></i>
-                        Do Not Tumble Dry{" "}
-                      </Typography>
-                      <Typography sx={{ paddingTop: "5px", fontSize: "16px" }}>
-                        <i
-                          style={{ padding: "0px 10px 0px 0px" }}
-                          className="fa-solid fa-mask-ventilator"
-                        ></i>
-                        Iron Medium Heat{" "}
-                      </Typography>
-                      <Typography sx={{ paddingTop: "5px", fontSize: "16px" }}>
-                        <i
-                          style={{ padding: "0px 10px 0px 0px" }}
-                          className="fa-solid fa-square-parking"
-                        ></i>
-                        Chemical dry cleaning P
-                      </Typography>
+                      {productData?.instruction?.map((instruction, index) => (
+                        <Typography
+                          key={index}
+                          sx={{ paddingTop: index === 0 ? "20px" : "5px", fontSize: "16px" }}
+                        >
+                          {instruction}
+                        </Typography>
+                      ))}
                     </AccordionDetails>
+
+
                   </Accordion>
                   <Accordion
                     sx={{ boxShadow: "none" }}
@@ -519,8 +414,7 @@ function SingleProduct() {
                       SIZE AND FIT
                     </AccordionSummary>
                     <AccordionDetails>
-                      The model wears a size 40 and is 188 cm tall with a, 96 cm
-                      chest, 83 cm waist and 94 cm hips.
+                      {productData?.other_info}
                     </AccordionDetails>
                   </Accordion>
                 </Box>
