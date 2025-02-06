@@ -25,11 +25,11 @@ const TrendingHeroSection = ({
             sm: `url(${img})`,
             xs: `url(${resImg})`,
           },
-          backgroundPosition: "center",
+          backgroundPosition: { md: "center" },
           backgroundSize: "cover",
           backgroundRepeat: "no-repeat",
           display: "flex",
-          alignItems: { xs: "end", sm: "center" },
+          alignItems: "center",
           width: "100%",
         }}
       >
@@ -71,7 +71,7 @@ const TrendingHeroSection = ({
                 </Typography>
               </Box>
               <Button
-                onClick={() => navigate("/product")}
+                onClick={() => navigate(`/product?gender=male`)}
                 sx={{
                   backgroundColor: "#000",
                   color: "#ffffff",
@@ -111,7 +111,7 @@ const TrendingHeroSection = ({
                 <ArrowForwardIcon className="arrow-icon" />
               </Button>
               <Button
-                onClick={() => navigate("/product")}
+                onClick={() => navigate(`/product?gender=female`)}
                 sx={{
                   backgroundColor: "#000",
                   color: "#ffffff",

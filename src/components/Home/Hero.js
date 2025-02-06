@@ -64,7 +64,7 @@ const Hero = () => {
               </Typography>
               <Box>
                 <Button
-                  onClick={() => navigate("/product")}
+                  onClick={() => navigate(`/product?gender=male`)}
                   className="lato"
                   sx={{
                     backgroundColor: "#b51f29",
@@ -105,7 +105,7 @@ const Hero = () => {
                   <ArrowForwardIcon className="arrow-icon" />
                 </Button>
                 <Button
-                  onClick={() => navigate("/product")}
+                  onClick={() => navigate(`/product?gender=female`)}
                   className="lato"
                   sx={{
                     backgroundColor: "#b51f29",

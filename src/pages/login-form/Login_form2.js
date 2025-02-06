@@ -13,11 +13,11 @@ import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import { useFormik } from "formik";
 import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
-import { toast } from "react-toastify";
 import { profile } from "../../atoms/authAtoms";
 import { useRecoilState } from "recoil";
 import { useTheme } from "@emotion/react";
 import axiosInstance from "../../Instance";
+import toast, { Toaster } from "react-hot-toast";
 
 const Login_form2 = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -25,7 +25,7 @@ const Login_form2 = () => {
   const [profileData, setProfileData] = useRecoilState(profile);
   const handleClickShowPassword = () => setShowPassword(!showPassword);
   const navigate = useNavigate();
-  const notify = () => toast.success("Login successful 🎉");
+  const notifySuccess = () => toast.success("Login successful 🎉");
   const notifyError = (message) => toast.error(message);
 
   const formik = useFormik({
@@ -49,40 +49,38 @@ const Login_form2 = () => {
         .post("/api/user/login", values)
         .then((response) => {
           console.log(response);
-          const { token } = response.data; // Assuming token is in response.data.token
+          const { token } = response.data;
 
-          // Store token in a cookie for 7 days
-          localStorage.setItem("token", token, { expires: 7 });
-
+          localStorage.setItem("token", token);
+          notifySuccess(); 
           setProfileData(response.data.data);
           actions.resetForm();
-          navigate("/cart");
-          notify();
+          navigate("/");
         })
         .catch((error) => {
           const status = error.response ? error.response.status : 500;
           switch (status) {
             case 400:
-              notifyError("Bad request. Please check your input.");
+              toast.error("Bad request. Please check your input.");
               break;
             case 401:
-              notifyError("Unauthorized. Please check your credentials.");
+              toast.error("Unauthorized. Please check your credentials.");
               break;
             case 403:
-              notifyError(
+              toast.error(
                 "Forbidden. You don't have permission to perform this action."
               );
               break;
             case 404:
-              notifyError(
+              toast.error(
                 "Not found. The requested resource could not be found."
               );
               break;
             case 500:
-              notifyError("Internal server error. Please try again later.");
+              toast.error("User not found.");
               break;
             default:
-              notifyError("An unknown error occurred. Please try again.");
+              toast.error("An unknown error occurred. Please try again.");
               break;
           }
         });
@@ -91,6 +89,10 @@ const Login_form2 = () => {
 
   return (
     <Box>
+      <Toaster
+        position="top-center"
+        reverseOrder={false}
+      />
       <Grid container justifyContent="center">
         <Grid
           item

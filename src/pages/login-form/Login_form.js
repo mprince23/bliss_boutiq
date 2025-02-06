@@ -17,14 +17,14 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import HistoryIcon from "@mui/icons-material/History";
 import StarIcon from "@mui/icons-material/Star";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useRecoilState } from "recoil";
 import { profile } from "../../atoms/authAtoms";
+import toast, { Toaster } from "react-hot-toast";
+import axiosInstance from "../../Instance";
 
-const Login_form = ({ edit }) => {
+const Login_form = () => {
   const [showPassword, setShowPassword] = useState(false);
   const theme = useTheme();
   const [profileData, setProfileData] = useRecoilState(profile);
@@ -54,8 +54,8 @@ const Login_form = ({ edit }) => {
     }),
 
     onSubmit: (values, actions) => {
-      axios
-        .post("https://blissbotique-backend.onrender.com/api/login", values)
+      axiosInstance
+        .post("/api/login", values)
         .then((response) => {
           console.log(response);
           setProfileData(response.data.data);
@@ -96,14 +96,17 @@ const Login_form = ({ edit }) => {
   });
   return (
     <Box>
-      {/* <ToastContainer /> */}
+      <Toaster
+        position="top-center"
+        reverseOrder={false}
+      />
       <Grid container display={"flex"} justifyContent={"center"}>
         <Grid
           item
           md={12}
           sx={{
             width: "100%",
-            padding:"24px 54px"
+            padding: "24px 54px"
           }}
         >
           <Box textAlign={"center"}>

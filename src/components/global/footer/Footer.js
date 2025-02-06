@@ -6,20 +6,21 @@ import YouTubeIcon from "@mui/icons-material/YouTube";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import { NavLink } from "react-router-dom";
 const Footer = () => {
+
   const footer1 = [
     { lable: "New Arrivals", to: "/" },
-    { lable: "Men", to: "/product" },
-    { lable: "Women", to: "/product" },
-    { lable: "Kids", to: "/product" },
-    { lable: "Shoes & Accessories", to: "/" },
-    { lable: "Underwear", to: "/" },
+    { lable: "Men", to: "/product?&&gender=male" },
+    { lable: "Women", to: "/product?&&gender=female" },
+    { lable: "Kids", to: "/product?&&gender=kids" },
+    { lable: "Shoes & Accessories", to: "/product?&&gender=shoes" },
+    { lable: "Underwear", to: "/product?&&gender=underwear" },
     { lable: "Pre-owned", to: "/" },
     { lable: "Sale", to: "/" },
     { lable: "About Bliss Boutiq", to: "/" },
   ];
 
   const footer2 = [
-    { lable: "My Account", to: "/" },
+    { lable: "My Account", to: "/my-account" },
     { lable: "Care & Services", to: "/" },
     { lable: "FAQ", to: "/" },
   ];

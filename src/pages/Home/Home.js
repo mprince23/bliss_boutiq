@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "../../assets/styles/home.css";
 import MainSlider from "../../components/Home/MainSlider";
 import ProductImages from "../../components/Home/ProductGrid";
@@ -18,6 +18,13 @@ import Hero from "../../components/Home/Hero";
 import Subscribe from "../../components/Home/Subscribe";
 
 const Home = () => {
+
+    const [selectedCategory, setSelectedCategory] = useState(null);
+  
+    const handleCategorySelect = (categoryId) => {
+      setSelectedCategory(categoryId);
+    };
+
   return (
     <>
       <Hero />

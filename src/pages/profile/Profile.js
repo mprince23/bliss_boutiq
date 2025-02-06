@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Box, Container, Grid, useTheme } from "@mui/material";
 import profileBackgroundImage from "../../assets/images/profile/profilebackground.webp";
 import LogoutIcon from "@mui/icons-material/Logout";
@@ -6,27 +6,33 @@ import WorkHistoryOutlinedIcon from "@mui/icons-material/WorkHistoryOutlined";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import CardGiftcardOutlinedIcon from "@mui/icons-material/CardGiftcardOutlined";
 import { useNavigate } from "react-router-dom";
+import { useRecoilState } from "recoil";
+import { profile } from "../../atoms/authAtoms";
+import axiosInstance from "../../Instance";
+
 const Profile = () => {
   const theme = useTheme();
   const navigate = useNavigate();
+  const [profileData, setProfileData] = useRecoilState(profile);
+
   const mainData = [
     {
       icon: <i className="fa-regular fa-user"></i>,
       title: "MY DATA",
       description: "Personal data, address and payment methods",
-      navigate: "myData",
+      navigate: "my-data",
     },
     {
       icon: <WorkHistoryOutlinedIcon sx={{ fontSize: "90px" }} />,
       title: "ORDER HISTORY",
       description: "Review your past orders",
-      navigate: "orderHistory",
+      navigate: "order-history",
     },
     {
       icon: <FavoriteBorderOutlinedIcon sx={{ fontSize: "90px" }} />,
       title: "MY WISHLIST",
       description: "Save your favorite items",
-      navigate: "myWishilist",
+      navigate: "my-wishilist",
     },
     {
       icon: <CardGiftcardOutlinedIcon sx={{ fontSize: "90px" }} />,
@@ -35,12 +41,37 @@ const Profile = () => {
       navigate: "offer",
     },
   ];
+
+  const fetchUserData = async () => {
+    try {
+      const token = localStorage.getItem("token");
+      const response = await axiosInstance.get("/api/user/me", {
+        headers: {
+          token: token,
+        },
+      });
+      setProfileData(response.data.data);
+    } catch (error) {
+      console.error("Failed to fetch user data:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchUserData();
+  }, []);
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    setProfileData(null);
+    navigate("/profile");
+  };
+
   return (
     <>
-      <Box py={"80px"} bgcolor={"bl##1d1d1d00"}>
+      <Box py={"80px"} bgcolor={"#1d1d1d00"}>
         <Container maxWidth="xl">
           <Grid container justifyContent={"center"}>
-            <Grid itex xs={12}>
+            <Grid item xs={12}>
               <Box
                 className="lato"
                 sx={{
@@ -53,6 +84,7 @@ const Profile = () => {
                   py: "15px",
                   cursor: "pointer",
                 }}
+                onClick={handleLogout}
               >
                 <Box pb="5px">LOG OUT</Box>
                 <Box>
@@ -97,9 +129,10 @@ const Profile = () => {
                       color: theme.palette.white,
                       fontWeight: "900",
                       textAlign: "center",
+                      textTransform: "uppercase",
                     }}
                   >
-                    WELCOME HEET
+                    WELCOME {profileData.first_name}
                   </Box>
                 </Box>
               </Box>
